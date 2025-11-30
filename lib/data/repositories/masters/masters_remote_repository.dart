@@ -1,6 +1,7 @@
 import '../../../core/entities/result/result.dart';
 import '../../../domain/models/articles/topic/topic.dart';
 import '../../../domain/models/masters/master_comment/master_comment.dart';
+import '../../../domain/models/masters/master_model/master_model.dart';
 import '../../../domain/models/masters/master_profile/master_profile.dart';
 import '../../../domain/models/masters/masters_list_model/masters_list_model.dart';
 import '../../services/masters/masters_remote_service.dart';
@@ -45,6 +46,18 @@ class MastersRemoteRepository implements MastersRepository {
   @override
   Future<Result<List<Topic>>> fetchArticles({required int masterId}) {
     // TODO: implement fetchArticles
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<List<MasterModel>>> fetchFavouriteMasters() {
+    // TODO: implement fetchFavouriteMasters
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<List<MasterModel>>> toggleLikeMaster({required int id}) {
+    // TODO: implement likeMaster
     throw UnimplementedError();
   }
 }

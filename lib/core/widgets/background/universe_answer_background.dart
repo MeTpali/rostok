@@ -20,7 +20,7 @@ class UniverseAnswerBackground extends StatelessWidget {
           child: Transform.rotate(
             angle: -8 * pi / 180,
             child: SvgPicture.asset(
-              AppIcons.jupiter,
+              AppIcons.globe1,
               colorMapper: const IconColorMapper.filled(
                 color: AppColors.transparentBlue,
               ),

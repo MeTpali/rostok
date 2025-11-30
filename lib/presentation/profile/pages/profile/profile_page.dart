@@ -57,7 +57,7 @@ class ProfilePage extends ConsumerWidget {
                   topOffset: -15,
                   rightOffset: 0,
                   widget: SvgPicture.asset(
-                    AppIcons.star4,
+                    AppIcons.star1,
                     height: 30,
                     width: 30,
                     colorMapper: const IconColorMapper(

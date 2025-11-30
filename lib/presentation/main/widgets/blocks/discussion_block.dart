@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -5,6 +6,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_fonts.dart';
 import '../../../../core/widgets/blocks/menu_block.dart';
 import '../../../../core/widgets/buttons/label_button.dart';
+import '../../../../routing/app_router.dart';
 import '../../../mock/mock_topic_button.dart';
 import '../../providers/main_di.dart';
 
@@ -16,7 +18,7 @@ class DiscussionBlock extends ConsumerWidget {
     final topicsState = ref.watch(MainDi.topicsProvider);
 
     return MenuBlock(
-      title: 'Хочу обсудить',
+      title: 'Хочу изучить',
       titlePadding: const EdgeInsets.only(bottom: 14.0, left: 14.0),
       titleStyle: const TextStyle(
         fontSize: 30,
@@ -54,6 +56,17 @@ class DiscussionBlock extends ConsumerWidget {
                 height: 32,
                 disabledColor: AppColors.transparentBlue,
                 elevation: 5.0,
+                onTap: () async {
+                  AutoTabsRouter.of(context).setActiveIndex(1);
+
+                  final router = AutoTabsRouter.of(
+                    context,
+                  ).innerRouterOf<StackRouter>(MastersShellRoute.name);
+                  final sex = topics[index];
+                  await router?.replaceAll([
+                    MastersRoute(initialFilter: sex),
+                  ], updateExistingRoutes: false);
+                },
               ),
             ),
             separatorBuilder: (_, __) => const SizedBox(width: 10),

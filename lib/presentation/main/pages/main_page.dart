@@ -14,7 +14,6 @@ import '../providers/main_di.dart';
 import '../widgets/blocks/discussion_block.dart';
 import '../widgets/blocks/knowledge_base_block.dart';
 import '../widgets/blocks/masters_block.dart';
-import '../widgets/blocks/searching_block.dart';
 import '../widgets/cards/promo_card.dart';
 import '../widgets/cards/registration_card.dart';
 
@@ -70,8 +69,8 @@ class MainPage extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 14.0),
                         child: PromoCard(onTap: () async {}),
                       ),
-                      const SizedBox(height: 32),
-                      const SearchingBlock(),
+                      // const SizedBox(height: 32),
+                      // const SearchingBlock(),
                       const SizedBox(height: 32),
                       const DiscussionBlock(),
                     ],

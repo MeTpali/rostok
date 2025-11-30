@@ -68,7 +68,7 @@ class _AuthorizationPageState extends ConsumerState<AuthorizationPage> {
       await next.maybeWhen(
         authorized: (token, userId, userUuid) async {
           if (!mounted) return;
-          await context.router.replaceAll([const HomeRoute()]);
+          await context.router.replaceAll([HomeRoute()]);
         },
         orElse: () async {},
       );

@@ -113,7 +113,7 @@ class ActivitiesCard extends ConsumerWidget {
               onTap: () async {
                 await ref.read(ProfileDi.authProvider.notifier).logoutLocal();
                 if (context.mounted) {
-                  await context.router.replaceAll(const [HomeRoute()]);
+                  await context.router.replaceAll([HomeRoute()]);
                 }
               },
               child: const Text(

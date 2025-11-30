@@ -116,7 +116,7 @@ class _KnowledgeBaseBlockState extends ConsumerState<KnowledgeBaseBlock> {
           ),
         ],
       ),
-      onTap: () => AutoTabsRouter.of(context).setActiveIndex(4),
+      onTap: () => AutoTabsRouter.of(context).setActiveIndex(3),
       child: Column(
         spacing: 20,
         mainAxisSize: MainAxisSize.min,
@@ -195,7 +195,7 @@ class _KnowledgeBaseBlockState extends ConsumerState<KnowledgeBaseBlock> {
                               title: topic.title,
                               description: topic.description,
                               onTap: () async {
-                                AutoTabsRouter.of(context).setActiveIndex(4);
+                                AutoTabsRouter.of(context).setActiveIndex(3);
 
                                 final router = AutoTabsRouter.of(context)
                                     .innerRouterOf<StackRouter>(

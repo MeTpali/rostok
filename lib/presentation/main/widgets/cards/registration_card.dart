@@ -26,7 +26,7 @@ class RegistrationCard extends StatelessWidget {
               top: -10,
               right: 30,
               child: SvgPicture.asset(
-                AppIcons.book1,
+                AppIcons.booky,
                 height: 100,
                 width: 100,
                 colorMapper: const IconColorMapper.filled(

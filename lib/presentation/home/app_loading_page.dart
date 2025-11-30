@@ -23,7 +23,7 @@ class AppLoadingPage extends ConsumerWidget {
     }),
     builder: (context, snapshot) {
       if (snapshot.hasData) {
-        unawaited(context.router.replaceAll(const [HomeRoute()]));
+        unawaited(context.router.replaceAll([HomeRoute()]));
       }
       return ColoredBox(
         color: AppColors.base0,

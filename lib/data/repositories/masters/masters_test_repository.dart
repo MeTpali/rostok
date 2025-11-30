@@ -1,6 +1,7 @@
 import '../../../core/entities/result/result.dart';
 import '../../../domain/models/articles/topic/topic.dart';
 import '../../../domain/models/masters/master_comment/master_comment.dart';
+import '../../../domain/models/masters/master_model/master_model.dart';
 import '../../../domain/models/masters/master_profile/master_profile.dart';
 import '../../../domain/models/masters/masters_list_model/masters_list_model.dart';
 import '../../services/masters/masters_test_service.dart';
@@ -24,6 +25,7 @@ class MastersTestRepository implements MastersRepository {
     final mastersList = await _mastersService.fetchMasters(
       page: page,
       limit: limit,
+      topic: topic,
     );
     return Result.success(mastersList);
   }
@@ -46,5 +48,19 @@ class MastersTestRepository implements MastersRepository {
   Future<Result<List<Topic>>> fetchArticles({required int masterId}) async {
     final articles = await _mastersService.fetchArticles(masterId: masterId);
     return Result.success(articles);
+  }
+
+  @override
+  Future<Result<List<MasterModel>>> fetchFavouriteMasters() async {
+    await Future<void>.delayed(_delay);
+    final mastersList = await _mastersService.fetchFavouriteMasters();
+    return Result.success(mastersList);
+  }
+
+  @override
+  Future<Result<List<MasterModel>>> toggleLikeMaster({required int id}) async {
+    await Future<void>.delayed(_delay);
+    final mastersList = await _mastersService.toggleLikeMaster(id: id);
+    return Result.success(mastersList);
   }
 }

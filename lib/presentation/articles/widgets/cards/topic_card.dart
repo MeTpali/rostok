@@ -39,7 +39,7 @@ class TopicCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 18.0),
               child: SvgPicture.asset(
-                AppIcons.body,
+                AppIcons.randBook(),
                 height: imageSize?.height ?? 123,
                 width: imageSize?.width ?? 127,
                 colorMapper: const IconColorMapper.filled(

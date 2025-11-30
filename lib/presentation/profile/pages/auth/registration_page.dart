@@ -75,7 +75,7 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       await next.maybeWhen(
         authorized: (token, userId, userUuid) async {
           if (!mounted) return;
-          await context.router.replaceAll([const HomeRoute()]);
+          await context.router.replaceAll([HomeRoute()]);
         },
         orElse: () async {},
       );

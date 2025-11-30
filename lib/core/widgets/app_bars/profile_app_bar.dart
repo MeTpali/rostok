@@ -88,7 +88,6 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                 20,
               ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   AppImage(
                     url: imageUrl ?? '',
@@ -97,73 +96,122 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                     height: 60,
                   ),
                   const SizedBox(width: 12),
+                  // Expanded(
+                  //   child: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       GestureDetector(
+                  //         onTap: onTapProfile,
+                  //         child: Row(
+                  //           spacing: 4,
+                  //           children: [
+                  //             Flexible(
+                  //               child: Text(
+                  //                 username,
+                  //                 style: const TextStyle(
+                  //                   fontSize: 20,
+                  //                   fontWeight: FontWeight.w500,
+                  //                   color: AppColors.carbonFiber,
+                  //                   fontFamily: AppFonts.nyght,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             SvgPicture.asset(AppIcons.chevronRight),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       ClipRRect(
+                  //         borderRadius: BorderRadius.circular(1000),
+                  //         child: ColoredBox(
+                  //           color: AppColors.fairway,
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.symmetric(
+                  //               horizontal: 10.0,
+                  //               vertical: 6.0,
+                  //             ),
+                  //             child: Row(
+                  //               spacing: 6,
+                  //               mainAxisSize: MainAxisSize.min,
+                  //               children: [
+                  //                 Text(
+                  //                   prana.toString(),
+                  //                   style: const TextStyle(
+                  //                     fontSize: 12,
+                  //                     fontWeight: FontWeight.w600,
+                  //                     color: AppColors.base0,
+                  //                   ),
+                  //                 ),
+                  //                 SvgPicture.asset(AppIcons.prana),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: onTapProfile,
-                          child: Row(
-                            spacing: 4,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  username,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.carbonFiber,
-                                    fontFamily: AppFonts.nyght,
-                                  ),
-                                ),
-                              ),
-                              SvgPicture.asset(AppIcons.chevronRight),
-                            ],
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(1000),
-                          child: ColoredBox(
-                            color: AppColors.fairway,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0,
-                                vertical: 6.0,
-                              ),
-                              child: Row(
-                                spacing: 6,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    prana.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.base0,
-                                    ),
-                                  ),
-                                  SvgPicture.asset(AppIcons.prana),
-                                ],
+                    child: GestureDetector(
+                      onTap: onTapProfile,
+                      child: Row(
+                        spacing: 4,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              username,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.carbonFiber,
+                                fontFamily: AppFonts.nyght,
                               ),
                             ),
                           ),
+                          SvgPicture.asset(AppIcons.chevronRight),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: ColoredBox(
+                      color: AppColors.fairway,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 6.0,
                         ),
-                      ],
+                        child: Row(
+                          spacing: 6,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              prana.toString(),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.base0,
+                              ),
+                            ),
+                            SvgPicture.asset(AppIcons.prana),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   if (showDayCardButton || showNotificationsButton)
                     const SizedBox(width: 6),
-                  if (showDayCardButton)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6.0),
-                      child: AppIconButton(
-                        backgroundColor: AppColors.astronomer,
-                        icon: SvgPicture.asset(AppIcons.card),
-                        iconPadding: const EdgeInsets.all(11.0),
-                        onPressed: onTapDayCard,
-                      ),
-                    ),
+                  // if (showDayCardButton)
+                  //   Padding(
+                  //     padding: const EdgeInsets.only(right: 6.0),
+                  //     child: AppIconButton(
+                  //       backgroundColor: AppColors.astronomer,
+                  //       icon: SvgPicture.asset(AppIcons.card),
+                  //       iconPadding: const EdgeInsets.all(11.0),
+                  //       onPressed: onTapDayCard,
+                  //     ),
+                  //   ),
                   if (showNotificationsButton)
                     AppIconButton(
                       backgroundColor: AppColors.astronomer,
@@ -181,7 +229,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                   top: 25 / 44 * MediaQuery.of(context).padding.top,
                 ),
                 child: SvgPicture.asset(
-                  AppIcons.star3,
+                  AppIcons.telescope,
                   height: 41,
                   width: 30,
                   colorMapper: const IconColorMapper(

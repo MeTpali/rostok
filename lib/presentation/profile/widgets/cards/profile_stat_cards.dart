@@ -13,7 +13,7 @@ class PranaStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => StatInfoCard(
-    title: 'Очки Прана',
+    title: 'Очки Рост',
     value: value,
     onTap: () => context.router.push(const PaymentMethodRoute()),
     trailingIcon: SvgPicture.asset(

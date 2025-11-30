@@ -149,7 +149,7 @@ class PaymentBalanceCard extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: '$prana Прана',
+                                  text: '$prana Рост',
                                   style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -161,7 +161,7 @@ class PaymentBalanceCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           const Text(
-                            '1 ₽ = 1 Прана',
+                            '1 ₽ = 1 Рост',
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,

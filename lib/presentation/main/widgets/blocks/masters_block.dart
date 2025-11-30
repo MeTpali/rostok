@@ -24,6 +24,7 @@ class MastersBlock extends ConsumerWidget {
     return mastersState.maybeMap(
       orElse: () => const SizedBox.shrink(),
       resolved: (mastersState) => _buildBlock(
+        context,
         FlexibleWrap(
           spacing: 11,
           runSpacing: 10,
@@ -44,12 +45,23 @@ class MastersBlock extends ConsumerWidget {
                 onTap: () async => context.router.push(
                   MasterRoute(id: mastersState.masters[i].id),
                 ),
+                isFavorite:
+                    ref
+                        .watch(MastersDi.facouriteMastersProvider)
+                        .indexWhere(
+                          (m) => m.id == mastersState.masters[i].id,
+                        ) !=
+                    -1,
+                onFavoriteToggle: () => ref
+                    .read(MastersDi.facouriteMastersProvider.notifier)
+                    .toggleFavorite(mastersState.masters[i].id),
                 onBook: () {},
               ),
           ],
         ),
       ),
       loading: (_) => _buildBlock(
+        context,
         FlexibleWrap(
           spacing: 11,
           runSpacing: 10,
@@ -62,7 +74,7 @@ class MastersBlock extends ConsumerWidget {
     );
   }
 
-  Widget _buildBlock(Widget child) => Padding(
+  Widget _buildBlock(BuildContext context, Widget child) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 14.0),
     child: MenuBlock(
       title: 'Преподаватели',
@@ -73,6 +85,7 @@ class MastersBlock extends ConsumerWidget {
         fontFamily: AppFonts.nyght,
       ),
       titlePadding: const EdgeInsets.only(bottom: 14),
+      onTap: () => AutoTabsRouter.of(context).setActiveIndex(1),
       action: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -9,7 +9,7 @@ import '../../routing/app_router.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   final _routes = const [
     MainShellRoute(),
@@ -18,11 +18,11 @@ class HomePage extends StatelessWidget {
     ArticlesShellRoute(),
   ];
 
-  final List<PageRouteInfo> _initialRoutes = const [
-    MainRoute(),
+  final List<PageRouteInfo> _initialRoutes = [
+    const MainRoute(),
     MastersRoute(),
-    ChatRoute(),
-    LibraryRoute(),
+    const ChatRoute(),
+    const LibraryRoute(),
   ];
 
   @override

@@ -4,6 +4,9 @@ import 'package:riverpod/riverpod.dart';
 
 import '../../../data/repositories/masters/masters_repository.dart';
 import '../../../di/di.dart';
+import '../../../domain/models/masters/master_model/master_model.dart';
+import '../../profile/providers/profile_di.dart';
+import 'favourite_masters/favourite_masters_notifier.dart';
 import 'master/master_notifier.dart';
 import 'master/master_state.dart';
 import 'master_articles/master_articles_notifier.dart';
@@ -45,6 +48,14 @@ abstract class MastersDi {
       >(
         (ref) => MasterArticlesNotifier(
           mastersRepository: getIt<MastersRepository>(),
+        ),
+      );
+
+  static final facouriteMastersProvider =
+      StateNotifierProvider<FavouriteMastersNotifier, List<MasterModel>>(
+        (ref) => FavouriteMastersNotifier(
+          mastersRepository: getIt<MastersRepository>(),
+          authNotifier: ref.watch(ProfileDi.profileProvider.notifier),
         ),
       );
 }

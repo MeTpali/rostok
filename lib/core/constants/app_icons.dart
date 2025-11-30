@@ -1,3 +1,5 @@
+import 'dart:math';
+
 abstract class AppIcons {
   static const String _base = 'assets/icons';
 
@@ -9,7 +11,7 @@ abstract class AppIcons {
   static const String bird = '$_base/bird.svg';
   static const String body = '$_base/body.svg';
   static const String book = '$_base/book.svg';
-  static const String book1 = '$_base/book1.svg';
+  static const String booky = '$_base/booky.svg';
   static const String bowl = '$_base/bowl.svg';
   static const String card = '$_base/card.svg';
   static const String chat = '$_base/chat.svg';
@@ -81,10 +83,37 @@ abstract class AppIcons {
   static const String alarm = '$_base/alarm.svg';
   static const String venera = '$_base/venera.svg';
 
+  static const String ruler = '$_base/ruler.svg';
+  static const String pen = '$_base/pen.svg';
+  static const String glasses = '$_base/glasses.svg';
+  static const String globe1 = '$_base/globe1.svg';
+  static const String graduationCap = '$_base/graduation_cap.svg';
+  static const String compass = '$_base/compass.svg';
+  static const String stationery = '$_base/stationery.svg';
+  static const String telescope = '$_base/telescope.svg';
+  static const String book0 = '$_base/book0.svg';
+  static const String book1 = '$_base/book1.svg';
+  static const String book2 = '$_base/book2.svg';
+  static const String book3 = '$_base/book3.svg';
+  static const String book4 = '$_base/book4.svg';
+  static const String book5 = '$_base/book5.svg';
+  static const String book6 = '$_base/book6.svg';
+  static const String book7 = '$_base/book7.svg';
+  static const String book8 = '$_base/book8.svg';
+  static const String book9 = '$_base/book9.svg';
+  static const String testTube = '$_base/test_tube.svg';
+  static const String idea = '$_base/idea.svg';
+
   /// PNG icons
   static const String lock = '$_base/lock.png';
   static const String starMosh1 = '$_base/star_mosh_1.png';
   static const String starMosh2 = '$_base/star_mosh_2.png';
   static const String starMosh3 = '$_base/star_mosh_3.png';
   static const String starMosh4 = '$_base/star_mosh_4.png';
+
+  static String randBook() {
+    final rand = Random();
+    final i = rand.nextInt(10);
+    return '$_base/book$i.svg';
+  }
 }

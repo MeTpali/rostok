@@ -101,7 +101,7 @@ class MasterInfoCard extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             children: [
-              InfoItemTile.rating(rating: rating, label: 'Рейтинг Ростка'),
+              InfoItemTile.rating(rating: rating, label: 'Рейтинг'),
               const SizedBox(width: 12),
               InfoItemTile.number(
                 number: articlesCount.toDouble(),

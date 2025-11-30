@@ -116,6 +116,7 @@ class MasterCard extends StatelessWidget {
                               ),
                               iconPadding: const EdgeInsets.all(8.0),
                               backgroundColor: AppColors.mediumPurple,
+                              onPressed: onFavoriteToggle,
                             ),
                           ],
                         ),

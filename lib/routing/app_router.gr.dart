@@ -206,18 +206,36 @@ class DayCardRouteArgs {
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-    : super(HomeRoute.name, initialChildren: children);
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({Key? key, List<PageRouteInfo>? children})
+    : super(
+        HomeRoute.name,
+        args: HomeRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'HomeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const HomePage();
+      final args = data.argsAs<HomeRouteArgs>(
+        orElse: () => const HomeRouteArgs(),
+      );
+      return HomePage(key: args.key);
     },
   );
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -302,18 +320,38 @@ class MasterRouteArgs {
 
 /// generated route for
 /// [MastersPage]
-class MastersRoute extends PageRouteInfo<void> {
-  const MastersRoute({List<PageRouteInfo>? children})
-    : super(MastersRoute.name, initialChildren: children);
+class MastersRoute extends PageRouteInfo<MastersRouteArgs> {
+  MastersRoute({String? initialFilter, Key? key, List<PageRouteInfo>? children})
+    : super(
+        MastersRoute.name,
+        args: MastersRouteArgs(initialFilter: initialFilter, key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'MastersRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const MastersPage();
+      final args = data.argsAs<MastersRouteArgs>(
+        orElse: () => const MastersRouteArgs(),
+      );
+      return MastersPage(initialFilter: args.initialFilter, key: args.key);
     },
   );
+}
+
+class MastersRouteArgs {
+  const MastersRouteArgs({this.initialFilter, this.key});
+
+  final String? initialFilter;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MastersRouteArgs{initialFilter: $initialFilter, key: $key}';
+  }
 }
 
 /// generated route for

@@ -9,11 +9,18 @@ class MasterModel with _$MasterModel {
     @JsonKey(name: 'user_id') required int id,
     @JsonKey(name: 'first_name') required String firstName,
     @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'rating') required double rating,
+    @JsonKey(name: 'reviews_count') required int reviewsCount,
     @JsonKey(name: 'about') String? about,
     @JsonKey(name: 'birth_date') String? birthDate,
     @JsonKey(name: 'birth_time') String? birthTime,
     @JsonKey(name: 'gender') String? gender,
     @JsonKey(name: 'birth_city') String? birthCity,
+    @JsonKey(name: 'topics') @Default([]) List<String> topics,
+    @JsonKey(name: 'timing') int? timing, // среднее время занятия в минутах
+    @JsonKey(name: 'prana')
+    int?
+    prana, // количество очков (внутренняя мера оценки) у отличных преподавателей может доходить до нескольких тысяч
   }) = _MasterModel;
 
   factory MasterModel.fromJson(Map<String, dynamic> json) =>

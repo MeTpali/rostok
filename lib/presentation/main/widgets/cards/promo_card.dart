@@ -31,7 +31,7 @@ class PromoCard extends StatelessWidget {
             child: Transform.rotate(
               angle: -8 / 180 * pi,
               child: SvgPicture.asset(
-                AppIcons.body,
+                AppIcons.randBook(),
                 height: 127,
                 width: 127,
                 colorMapper: const IconColorMapper.filled(
@@ -47,7 +47,7 @@ class PromoCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Получите 100 очков Прана',
+                  'Получите 100 очков Роста',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,

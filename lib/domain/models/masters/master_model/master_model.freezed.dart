@@ -27,6 +27,10 @@ mixin _$MasterModel {
   String get firstName => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_name')
   String get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rating')
+  double get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reviews_count')
+  int get reviewsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'about')
   String? get about => throw _privateConstructorUsedError;
   @JsonKey(name: 'birth_date')
@@ -37,6 +41,12 @@ mixin _$MasterModel {
   String? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'birth_city')
   String? get birthCity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'topics')
+  List<String> get topics => throw _privateConstructorUsedError;
+  @JsonKey(name: 'timing')
+  int? get timing => throw _privateConstructorUsedError; // среднее время занятия в минутах
+  @JsonKey(name: 'prana')
+  int? get prana => throw _privateConstructorUsedError;
 
   /// Serializes this MasterModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,11 +69,16 @@ abstract class $MasterModelCopyWith<$Res> {
     @JsonKey(name: 'user_id') int id,
     @JsonKey(name: 'first_name') String firstName,
     @JsonKey(name: 'last_name') String lastName,
+    @JsonKey(name: 'rating') double rating,
+    @JsonKey(name: 'reviews_count') int reviewsCount,
     @JsonKey(name: 'about') String? about,
     @JsonKey(name: 'birth_date') String? birthDate,
     @JsonKey(name: 'birth_time') String? birthTime,
     @JsonKey(name: 'gender') String? gender,
     @JsonKey(name: 'birth_city') String? birthCity,
+    @JsonKey(name: 'topics') List<String> topics,
+    @JsonKey(name: 'timing') int? timing,
+    @JsonKey(name: 'prana') int? prana,
   });
 }
 
@@ -85,11 +100,16 @@ class _$MasterModelCopyWithImpl<$Res, $Val extends MasterModel>
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? rating = null,
+    Object? reviewsCount = null,
     Object? about = freezed,
     Object? birthDate = freezed,
     Object? birthTime = freezed,
     Object? gender = freezed,
     Object? birthCity = freezed,
+    Object? topics = null,
+    Object? timing = freezed,
+    Object? prana = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -105,6 +125,14 @@ class _$MasterModelCopyWithImpl<$Res, $Val extends MasterModel>
                 ? _value.lastName
                 : lastName // ignore: cast_nullable_to_non_nullable
                       as String,
+            rating: null == rating
+                ? _value.rating
+                : rating // ignore: cast_nullable_to_non_nullable
+                      as double,
+            reviewsCount: null == reviewsCount
+                ? _value.reviewsCount
+                : reviewsCount // ignore: cast_nullable_to_non_nullable
+                      as int,
             about: freezed == about
                 ? _value.about
                 : about // ignore: cast_nullable_to_non_nullable
@@ -125,6 +153,18 @@ class _$MasterModelCopyWithImpl<$Res, $Val extends MasterModel>
                 ? _value.birthCity
                 : birthCity // ignore: cast_nullable_to_non_nullable
                       as String?,
+            topics: null == topics
+                ? _value.topics
+                : topics // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            timing: freezed == timing
+                ? _value.timing
+                : timing // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            prana: freezed == prana
+                ? _value.prana
+                : prana // ignore: cast_nullable_to_non_nullable
+                      as int?,
           )
           as $Val,
     );
@@ -144,11 +184,16 @@ abstract class _$$MasterModelImplCopyWith<$Res>
     @JsonKey(name: 'user_id') int id,
     @JsonKey(name: 'first_name') String firstName,
     @JsonKey(name: 'last_name') String lastName,
+    @JsonKey(name: 'rating') double rating,
+    @JsonKey(name: 'reviews_count') int reviewsCount,
     @JsonKey(name: 'about') String? about,
     @JsonKey(name: 'birth_date') String? birthDate,
     @JsonKey(name: 'birth_time') String? birthTime,
     @JsonKey(name: 'gender') String? gender,
     @JsonKey(name: 'birth_city') String? birthCity,
+    @JsonKey(name: 'topics') List<String> topics,
+    @JsonKey(name: 'timing') int? timing,
+    @JsonKey(name: 'prana') int? prana,
   });
 }
 
@@ -169,11 +214,16 @@ class __$$MasterModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? rating = null,
+    Object? reviewsCount = null,
     Object? about = freezed,
     Object? birthDate = freezed,
     Object? birthTime = freezed,
     Object? gender = freezed,
     Object? birthCity = freezed,
+    Object? topics = null,
+    Object? timing = freezed,
+    Object? prana = freezed,
   }) {
     return _then(
       _$MasterModelImpl(
@@ -189,6 +239,14 @@ class __$$MasterModelImplCopyWithImpl<$Res>
             ? _value.lastName
             : lastName // ignore: cast_nullable_to_non_nullable
                   as String,
+        rating: null == rating
+            ? _value.rating
+            : rating // ignore: cast_nullable_to_non_nullable
+                  as double,
+        reviewsCount: null == reviewsCount
+            ? _value.reviewsCount
+            : reviewsCount // ignore: cast_nullable_to_non_nullable
+                  as int,
         about: freezed == about
             ? _value.about
             : about // ignore: cast_nullable_to_non_nullable
@@ -209,6 +267,18 @@ class __$$MasterModelImplCopyWithImpl<$Res>
             ? _value.birthCity
             : birthCity // ignore: cast_nullable_to_non_nullable
                   as String?,
+        topics: null == topics
+            ? _value._topics
+            : topics // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        timing: freezed == timing
+            ? _value.timing
+            : timing // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        prana: freezed == prana
+            ? _value.prana
+            : prana // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -221,12 +291,17 @@ class _$MasterModelImpl implements _MasterModel {
     @JsonKey(name: 'user_id') required this.id,
     @JsonKey(name: 'first_name') required this.firstName,
     @JsonKey(name: 'last_name') required this.lastName,
+    @JsonKey(name: 'rating') required this.rating,
+    @JsonKey(name: 'reviews_count') required this.reviewsCount,
     @JsonKey(name: 'about') this.about,
     @JsonKey(name: 'birth_date') this.birthDate,
     @JsonKey(name: 'birth_time') this.birthTime,
     @JsonKey(name: 'gender') this.gender,
     @JsonKey(name: 'birth_city') this.birthCity,
-  });
+    @JsonKey(name: 'topics') final List<String> topics = const [],
+    @JsonKey(name: 'timing') this.timing,
+    @JsonKey(name: 'prana') this.prana,
+  }) : _topics = topics;
 
   factory _$MasterModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MasterModelImplFromJson(json);
@@ -240,6 +315,12 @@ class _$MasterModelImpl implements _MasterModel {
   @override
   @JsonKey(name: 'last_name')
   final String lastName;
+  @override
+  @JsonKey(name: 'rating')
+  final double rating;
+  @override
+  @JsonKey(name: 'reviews_count')
+  final int reviewsCount;
   @override
   @JsonKey(name: 'about')
   final String? about;
@@ -255,10 +336,26 @@ class _$MasterModelImpl implements _MasterModel {
   @override
   @JsonKey(name: 'birth_city')
   final String? birthCity;
+  final List<String> _topics;
+  @override
+  @JsonKey(name: 'topics')
+  List<String> get topics {
+    if (_topics is EqualUnmodifiableListView) return _topics;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topics);
+  }
+
+  @override
+  @JsonKey(name: 'timing')
+  final int? timing;
+  // среднее время занятия в минутах
+  @override
+  @JsonKey(name: 'prana')
+  final int? prana;
 
   @override
   String toString() {
-    return 'MasterModel(id: $id, firstName: $firstName, lastName: $lastName, about: $about, birthDate: $birthDate, birthTime: $birthTime, gender: $gender, birthCity: $birthCity)';
+    return 'MasterModel(id: $id, firstName: $firstName, lastName: $lastName, rating: $rating, reviewsCount: $reviewsCount, about: $about, birthDate: $birthDate, birthTime: $birthTime, gender: $gender, birthCity: $birthCity, topics: $topics, timing: $timing, prana: $prana)';
   }
 
   @override
@@ -271,6 +368,9 @@ class _$MasterModelImpl implements _MasterModel {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.reviewsCount, reviewsCount) ||
+                other.reviewsCount == reviewsCount) &&
             (identical(other.about, about) || other.about == about) &&
             (identical(other.birthDate, birthDate) ||
                 other.birthDate == birthDate) &&
@@ -278,7 +378,10 @@ class _$MasterModelImpl implements _MasterModel {
                 other.birthTime == birthTime) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.birthCity, birthCity) ||
-                other.birthCity == birthCity));
+                other.birthCity == birthCity) &&
+            const DeepCollectionEquality().equals(other._topics, _topics) &&
+            (identical(other.timing, timing) || other.timing == timing) &&
+            (identical(other.prana, prana) || other.prana == prana));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -288,11 +391,16 @@ class _$MasterModelImpl implements _MasterModel {
     id,
     firstName,
     lastName,
+    rating,
+    reviewsCount,
     about,
     birthDate,
     birthTime,
     gender,
     birthCity,
+    const DeepCollectionEquality().hash(_topics),
+    timing,
+    prana,
   );
 
   /// Create a copy of MasterModel
@@ -314,11 +422,16 @@ abstract class _MasterModel implements MasterModel {
     @JsonKey(name: 'user_id') required final int id,
     @JsonKey(name: 'first_name') required final String firstName,
     @JsonKey(name: 'last_name') required final String lastName,
+    @JsonKey(name: 'rating') required final double rating,
+    @JsonKey(name: 'reviews_count') required final int reviewsCount,
     @JsonKey(name: 'about') final String? about,
     @JsonKey(name: 'birth_date') final String? birthDate,
     @JsonKey(name: 'birth_time') final String? birthTime,
     @JsonKey(name: 'gender') final String? gender,
     @JsonKey(name: 'birth_city') final String? birthCity,
+    @JsonKey(name: 'topics') final List<String> topics,
+    @JsonKey(name: 'timing') final int? timing,
+    @JsonKey(name: 'prana') final int? prana,
   }) = _$MasterModelImpl;
 
   factory _MasterModel.fromJson(Map<String, dynamic> json) =
@@ -334,6 +447,12 @@ abstract class _MasterModel implements MasterModel {
   @JsonKey(name: 'last_name')
   String get lastName;
   @override
+  @JsonKey(name: 'rating')
+  double get rating;
+  @override
+  @JsonKey(name: 'reviews_count')
+  int get reviewsCount;
+  @override
   @JsonKey(name: 'about')
   String? get about;
   @override
@@ -348,6 +467,15 @@ abstract class _MasterModel implements MasterModel {
   @override
   @JsonKey(name: 'birth_city')
   String? get birthCity;
+  @override
+  @JsonKey(name: 'topics')
+  List<String> get topics;
+  @override
+  @JsonKey(name: 'timing')
+  int? get timing; // среднее время занятия в минутах
+  @override
+  @JsonKey(name: 'prana')
+  int? get prana;
 
   /// Create a copy of MasterModel
   /// with the given fields replaced by the non-null parameter values.

@@ -12,7 +12,7 @@ class RegistrationBackground extends StatelessWidget {
         LayoutId(
           id: 1,
           child: SvgPicture.asset(
-            AppIcons.jupiter,
+            AppIcons.globe1,
             colorMapper: const IconColorMapper.filled(
               color: AppColors.lightPeriwinkle,
             ),
@@ -21,7 +21,7 @@ class RegistrationBackground extends StatelessWidget {
         LayoutId(
           id: 2,
           child: SvgPicture.asset(
-            AppIcons.moonsun,
+            AppIcons.star1,
             colorMapper: const IconColorMapper.filled(
               color: AppColors.lightPeriwinkle,
             ),

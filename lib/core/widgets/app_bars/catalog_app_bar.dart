@@ -131,13 +131,13 @@ class CatalogAppBar extends StatelessWidget implements PreferredSizeWidget {
                         onPressed: onTapSort,
                       ),
                     ),
-                  if (showFiltersButton)
-                    AppIconButton(
-                      backgroundColor: AppColors.astronomer,
-                      icon: SvgPicture.asset(AppIcons.filters),
-                      iconPadding: const EdgeInsets.all(8.0),
-                      onPressed: onTapFilters,
-                    ),
+                  // if (showFiltersButton)
+                  //   AppIconButton(
+                  //     backgroundColor: AppColors.astronomer,
+                  //     icon: SvgPicture.asset(AppIcons.filters),
+                  //     iconPadding: const EdgeInsets.all(8.0),
+                  //     onPressed: onTapFilters,
+                  //   ),
                 ],
               ),
             ),

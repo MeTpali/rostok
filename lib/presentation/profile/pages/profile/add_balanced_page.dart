@@ -74,7 +74,7 @@ class _AddBalancedPageState extends State<AddBalancedPage> {
                       ),
                       child: const Center(
                         child: Text(
-                          '1 ₽ = 1 Прана',
+                          '1 ₽ = 1 Рост',
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,

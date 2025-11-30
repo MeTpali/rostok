@@ -52,11 +52,11 @@ enum SortType {
           return 0;
         });
       case SortType.rating:
-        sortedMasters.sort((a, b) => a.rating.compareTo(b.rating));
+        sortedMasters.sort((a, b) => b.rating.compareTo(a.rating));
       case SortType.inscreasePrice:
-        break;
+        sortedMasters.sort((a, b) => a.prana.compareTo(b.prana));
       case SortType.decreasePrice:
-        break;
+        sortedMasters.sort((a, b) => b.prana.compareTo(a.prana));
     }
 
     return sortedMasters;

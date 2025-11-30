@@ -19,7 +19,8 @@ import '../widgets/pages/empty_masters_page.dart';
 
 @RoutePage()
 class MastersPage extends ConsumerStatefulWidget {
-  const MastersPage({super.key});
+  final String? initialFilter;
+  const MastersPage({this.initialFilter, super.key});
 
   @override
   ConsumerState<MastersPage> createState() => _MastersPageState();
@@ -34,6 +35,9 @@ class _MastersPageState extends ConsumerState<MastersPage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _toggleSelectedTopic(widget.initialFilter),
+    );
   }
 
   void _scrollListener() {
@@ -166,41 +170,52 @@ class _MastersPageState extends ConsumerState<MastersPage> {
 
           if (masters.isEmpty) return const EmptyMastersPage();
 
-          return ListView(
-            controller: _scrollController,
-            children: [
-              const SizedBox(height: 8),
-              AppCard(
-                color: AppColors.fairway,
-                contentPadding: const EdgeInsets.all(14.0),
-                child: FlexibleWrap(
-                  spacing: 7,
-                  runSpacing: 8,
-                  children: [
-                    for (final master in masters)
-                      MasterCard(
-                        key: ValueKey(master.id),
-                        width:
-                            MediaQuery.of(context).size.width /
-                            ((MediaQuery.of(context).size.width - 28) / 165 +
-                                1),
-                        name: '${master.firstName} ${master.lastName}',
-                        prana: master.prana,
-                        rating: master.rating,
-                        reviewsCount: master.reviewsCount,
-                        url: master.url,
-                        description: master.description,
-                        timing: master.timing,
-                        onTap: () async =>
-                            context.router.push(MasterRoute(id: master.id)),
-                        onBook: () {},
-                      ),
-                  ],
+          return RefreshIndicator(
+            onRefresh: () => _toggleSelectedTopic(selectedTopic),
+            child: ListView(
+              controller: _scrollController,
+              children: [
+                const SizedBox(height: 8),
+                AppCard(
+                  color: AppColors.fairway,
+                  contentPadding: const EdgeInsets.all(14.0),
+                  child: FlexibleWrap(
+                    spacing: 7,
+                    runSpacing: 8,
+                    children: [
+                      for (final master in masters)
+                        MasterCard(
+                          key: ValueKey(master.id),
+                          width:
+                              MediaQuery.of(context).size.width /
+                              ((MediaQuery.of(context).size.width - 28) / 165 +
+                                  1),
+                          name: '${master.firstName} ${master.lastName}',
+                          prana: master.prana,
+                          rating: master.rating,
+                          reviewsCount: master.reviewsCount,
+                          url: master.url,
+                          description: master.description,
+                          timing: master.timing,
+                          onTap: () async =>
+                              context.router.push(MasterRoute(id: master.id)),
+                          onBook: () {},
+                          isFavorite:
+                              ref
+                                  .watch(MastersDi.facouriteMastersProvider)
+                                  .indexWhere((m) => m.id == master.id) !=
+                              -1,
+                          onFavoriteToggle: () => ref
+                              .read(MastersDi.facouriteMastersProvider.notifier)
+                              .toggleFavorite(master.id),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 28),
-              if (isLoading) const Center(child: CircularProgressIndicator()),
-            ],
+                const SizedBox(height: 28),
+                if (isLoading) const Center(child: CircularProgressIndicator()),
+              ],
+            ),
           );
         },
       ),
