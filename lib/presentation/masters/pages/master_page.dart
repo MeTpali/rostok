@@ -79,38 +79,30 @@ class _MasterPageState extends ConsumerState<MasterPage> {
                     ),
                     resolved: (master) => MasterAppBar(
                       imageUrl: master.url,
-                      isFavourite: true,
+                      isFavourite:
+                          ref
+                              .watch(MastersDi.facouriteMastersProvider)
+                              .indexWhere((m) => m.id == widget.id) !=
+                          -1,
                       videoUrl: '', // master.videoUrl,
                       height: MediaQuery.of(context).size.height / 3,
+                      onToggleFavourite: (value) => ref
+                          .read(MastersDi.facouriteMastersProvider.notifier)
+                          .toggleFavorite(widget.id),
                     ),
                   ),
                   masterState.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
                     loading: () => const LoadingMasterInfoCard(),
-                    resolved: (master) => const MasterInfoCard(
-                      name: '五条 悟',
-                      online: true,
-                      rating: 5.0,
-                      articlesCount: 247,
-                      reviewsCount: 12,
-                      descrption:
-                          'Повседневная практика показывает, что реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям.',
-                      topics: [
-                        'секс',
-                        'наркотики',
-                        'алкоголь',
-                        'секс',
-                        'наркотики',
-                        'алкоголь',
-                      ],
-                      practices: [
-                        'секс',
-                        'наркотики',
-                        'алкоголь',
-                        'секс',
-                        'наркотики',
-                        'алкоголь',
-                      ],
+                    resolved: (master) => MasterInfoCard(
+                      name: '${master.firstName} ${master.lastName}',
+                      online: master.isOnline,
+                      rating: master.rating,
+                      articlesCount: master.articlesCount,
+                      reviewsCount: master.reviewsCount,
+                      descrption: master.description,
+                      topics: master.topics,
+                      practices: [],
                     ),
                   ),
                   ...masterCommentsState.maybeWhen(

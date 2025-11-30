@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_icons.dart';
@@ -85,35 +86,40 @@ class ProfilePage extends ConsumerWidget {
                     const PaymentMethodCard(cardNumber: 'Мир *7676'),
                     const SizedBox(height: 12),
 
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: AppColors.base0,
-                        borderRadius: BorderRadius.circular(14),
+                    GestureDetector(
+                      onTap: () async => url_launcher.launchUrl(
+                        Uri.parse('https://t.me/PremiumRussia'),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(14.0),
-                        child: Row(
-                          children: [
-                            const Expanded(
-                              child: Text(
-                                'Поддержка',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.base100,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: AppColors.base0,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                child: Text(
+                                  'Поддержка',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.base100,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SvgPicture.asset(
-                              AppIcons.headphones,
-                              width: 20,
-                              height: 20,
-                              colorFilter: const ColorFilter.mode(
-                                AppColors.fairway,
-                                BlendMode.srcIn,
+                              SvgPicture.asset(
+                                AppIcons.headphones,
+                                width: 20,
+                                height: 20,
+                                colorFilter: const ColorFilter.mode(
+                                  AppColors.fairway,
+                                  BlendMode.srcIn,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

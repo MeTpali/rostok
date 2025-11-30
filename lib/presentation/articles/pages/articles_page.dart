@@ -11,16 +11,37 @@ import '../providers/articles_di.dart';
 import '../widgets/cards/topic_card.dart';
 
 @RoutePage()
-class ArticlesPage extends ConsumerWidget {
-  const ArticlesPage({super.key});
+class ArticlesPage extends ConsumerStatefulWidget {
+  final int topicId;
+  final String topicTitle;
+  const ArticlesPage({
+    required this.topicId,
+    required this.topicTitle,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ArticlesPage> createState() => _ArticlesPageState();
+}
+
+class _ArticlesPageState extends ConsumerState<ArticlesPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ref
+          .read(ArticlesDi.arcticlesProvider.notifier)
+          .fetchArcticles(topicId: widget.topicId),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final articlesState = ref.watch(ArticlesDi.arcticlesProvider);
 
     return Scaffold(
       appBar: SimpleAppBar(
-        title: 'Туториал',
+        title: widget.topicTitle,
         mediaQuery: MediaQuery.of(context),
       ),
       backgroundColor: AppColors.base0,

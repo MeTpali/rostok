@@ -27,7 +27,6 @@ mixin _$ArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )
     resolved,
     required TResult Function() idle,
@@ -42,7 +41,6 @@ mixin _$ArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult? Function()? idle,
@@ -57,7 +55,6 @@ mixin _$ArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult Function()? idle,
@@ -158,7 +155,6 @@ class _$LoadingArcticleStateImpl implements LoadingArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )
     resolved,
     required TResult Function() idle,
@@ -177,7 +173,6 @@ class _$LoadingArcticleStateImpl implements LoadingArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult? Function()? idle,
@@ -196,7 +191,6 @@ class _$LoadingArcticleStateImpl implements LoadingArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult Function()? idle,
@@ -261,7 +255,6 @@ abstract class _$$ResolvedArcticleStateImplCopyWith<$Res> {
     String publisherName,
     DateTime publishDate,
     int commentsCount,
-    bool isFavourite,
   });
 }
 
@@ -285,7 +278,6 @@ class __$$ResolvedArcticleStateImplCopyWithImpl<$Res>
     Object? publisherName = null,
     Object? publishDate = null,
     Object? commentsCount = null,
-    Object? isFavourite = null,
   }) {
     return _then(
       _$ResolvedArcticleStateImpl(
@@ -313,10 +305,6 @@ class __$$ResolvedArcticleStateImplCopyWithImpl<$Res>
             ? _value.commentsCount
             : commentsCount // ignore: cast_nullable_to_non_nullable
                   as int,
-        isFavourite: null == isFavourite
-            ? _value.isFavourite
-            : isFavourite // ignore: cast_nullable_to_non_nullable
-                  as bool,
       ),
     );
   }
@@ -332,7 +320,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
     required this.publisherName,
     required this.publishDate,
     required this.commentsCount,
-    this.isFavourite = false,
   });
 
   @override
@@ -347,13 +334,10 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
   final DateTime publishDate;
   @override
   final int commentsCount;
-  @override
-  @JsonKey()
-  final bool isFavourite;
 
   @override
   String toString() {
-    return 'ArcticleState.resolved(id: $id, title: $title, content: $content, publisherName: $publisherName, publishDate: $publishDate, commentsCount: $commentsCount, isFavourite: $isFavourite)';
+    return 'ArcticleState.resolved(id: $id, title: $title, content: $content, publisherName: $publisherName, publishDate: $publishDate, commentsCount: $commentsCount)';
   }
 
   @override
@@ -369,9 +353,7 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
             (identical(other.publishDate, publishDate) ||
                 other.publishDate == publishDate) &&
             (identical(other.commentsCount, commentsCount) ||
-                other.commentsCount == commentsCount) &&
-            (identical(other.isFavourite, isFavourite) ||
-                other.isFavourite == isFavourite));
+                other.commentsCount == commentsCount));
   }
 
   @override
@@ -383,7 +365,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
     publisherName,
     publishDate,
     commentsCount,
-    isFavourite,
   );
 
   /// Create a copy of ArcticleState
@@ -409,7 +390,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )
     resolved,
     required TResult Function() idle,
@@ -421,7 +401,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
       publisherName,
       publishDate,
       commentsCount,
-      isFavourite,
     );
   }
 
@@ -436,7 +415,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult? Function()? idle,
@@ -448,7 +426,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
       publisherName,
       publishDate,
       commentsCount,
-      isFavourite,
     );
   }
 
@@ -463,7 +440,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult Function()? idle,
@@ -477,7 +453,6 @@ class _$ResolvedArcticleStateImpl implements ResolvedArcticleState {
         publisherName,
         publishDate,
         commentsCount,
-        isFavourite,
       );
     }
     return orElse();
@@ -526,7 +501,6 @@ abstract class ResolvedArcticleState implements ArcticleState {
     required final String publisherName,
     required final DateTime publishDate,
     required final int commentsCount,
-    final bool isFavourite,
   }) = _$ResolvedArcticleStateImpl;
 
   int get id;
@@ -535,7 +509,6 @@ abstract class ResolvedArcticleState implements ArcticleState {
   String get publisherName;
   DateTime get publishDate;
   int get commentsCount;
-  bool get isFavourite;
 
   /// Create a copy of ArcticleState
   /// with the given fields replaced by the non-null parameter values.
@@ -595,7 +568,6 @@ class _$IdleArcticleStateImpl implements IdleArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )
     resolved,
     required TResult Function() idle,
@@ -614,7 +586,6 @@ class _$IdleArcticleStateImpl implements IdleArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult? Function()? idle,
@@ -633,7 +604,6 @@ class _$IdleArcticleStateImpl implements IdleArcticleState {
       String publisherName,
       DateTime publishDate,
       int commentsCount,
-      bool isFavourite,
     )?
     resolved,
     TResult Function()? idle,

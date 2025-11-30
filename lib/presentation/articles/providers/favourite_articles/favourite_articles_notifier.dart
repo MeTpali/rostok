@@ -2,19 +2,19 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../data/repositories/masters/masters_repository.dart';
-import '../../../../domain/models/masters/master/master.dart';
+import '../../../../data/repositories/library/library_repository.dart';
+import '../../../../domain/models/articles/topic/topic.dart';
 import '../../../profile/providers/profile/profile_notifier.dart';
 import '../../../profile/providers/profile/profile_state.dart';
 
-class FavouriteMastersNotifier extends StateNotifier<List<Master>> {
-  final MastersRepository _mastersRepository;
+class FavouriteArticlesNotifier extends StateNotifier<List<Topic>> {
+  final LibraryRepository _libraryRepository;
   final ProfileNotifier _authNotifier;
 
-  FavouriteMastersNotifier({
-    required MastersRepository mastersRepository,
+  FavouriteArticlesNotifier({
+    required LibraryRepository libraryRepository,
     required ProfileNotifier authNotifier,
-  }) : _mastersRepository = mastersRepository,
+  }) : _libraryRepository = libraryRepository,
        _authNotifier = authNotifier,
        super([]);
 
@@ -35,10 +35,9 @@ class FavouriteMastersNotifier extends StateNotifier<List<Master>> {
   }
 
   Future<void> fetchFavorites() async {
-    final result = await _mastersRepository.fetchFavouriteMasters();
+    final result = await _libraryRepository.fetchFavouriteArticles();
     result.when(
-      success: (favoritesList) =>
-          state = favoritesList.map((m) => Master.fromModel(m)).toList(),
+      success: (favoritesList) => state = favoritesList,
       error: (message) {
         state = [];
       },
@@ -46,10 +45,9 @@ class FavouriteMastersNotifier extends StateNotifier<List<Master>> {
   }
 
   Future<void> toggleFavorite(int id) async {
-    final result = await _mastersRepository.toggleLikeMaster(id: id);
+    final result = await _libraryRepository.toggleLikeArticle(id: id);
     result.when(
-      success: (favoritesList) =>
-          state = favoritesList.map((m) => Master.fromModel(m)).toList(),
+      success: (favoritesList) => state = favoritesList,
       error: (message) {
         state = [];
       },

@@ -202,15 +202,11 @@ class _KnowledgeBaseBlockState extends ConsumerState<KnowledgeBaseBlock> {
                                       ArticlesShellRoute.name,
                                     );
 
-                                unawaited(
-                                  ref
-                                      .read(
-                                        ArticlesDi.arcticlesProvider.notifier,
-                                      )
-                                      .fetchArcticles(topicId: topic.id),
-                                );
                                 await router?.pushAndPopUntil(
-                                  const ArticlesRoute(),
+                                  ArticlesRoute(
+                                    topicId: topic.id,
+                                    topicTitle: topic.title,
+                                  ),
                                   predicate: (route) =>
                                       route.settings.name == 'LibraryRoute',
                                 );

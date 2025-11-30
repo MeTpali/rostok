@@ -19,7 +19,7 @@ class MastersBlock extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mastersState = ref.watch(MastersDi.mastersProvider);
+    final mastersState = ref.watch(MastersDi.previewMastersProvider);
 
     return mastersState.maybeMap(
       orElse: () => const SizedBox.shrink(),

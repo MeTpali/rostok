@@ -36,28 +36,25 @@ class ProfileSettingsPage extends ConsumerWidget {
             s.lastName,
           ].where((e) => e.isNotEmpty).join(' ').trim();
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(
-                  child: ProfileMainInfo(
-                    avatarUrl: s.avatarUrl ?? '',
-                    name: name.isEmpty ? 'Без имени' : name,
-                    birthDate: s.birthDate != null
-                        ? DateFormat('dd.MM.yyyy', 'ru_RU').format(s.birthDate!)
-                        : '',
-                    birthTime: s.birthTime ?? '',
-                    phone: s.phone,
-                    badges: const ['Гений', 'Миллиардер', 'Плейбой'],
-                    onEditAvatar: () =>
-                        showProfileSettingsSheet(context: context),
-                  ),
+          return ListView(
+            children: [
+              Center(
+                child: ProfileMainInfo(
+                  avatarUrl: s.avatarUrl ?? '',
+                  name: name.isEmpty ? 'Без имени' : name,
+                  birthDate: s.birthDate != null
+                      ? DateFormat('dd.MM.yyyy', 'ru_RU').format(s.birthDate!)
+                      : '',
+                  birthTime: s.birthTime ?? '',
+                  phone: s.phone,
+                  badges: const ['Гений', 'Миллиардер', 'Плейбой'],
+                  onEditAvatar: () =>
+                      showProfileSettingsSheet(context: context),
                 ),
-                const SizedBox(height: 16),
-                const ActivitiesCard(),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              const ActivitiesCard(),
+            ],
           );
         },
       ),

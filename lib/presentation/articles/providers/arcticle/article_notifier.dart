@@ -25,7 +25,6 @@ class ArticleNotifier extends StateNotifier<ArcticleState> {
         publisherName: arcticle.publisherName,
         publishDate: arcticle.publishDate,
         commentsCount: arcticle.commentsCount,
-        isFavourite: arcticle.isFavourite,
       ),
       error: (_) => state = const ArcticleState.idle(),
     );
@@ -43,7 +42,6 @@ class ArticleNotifier extends StateNotifier<ArcticleState> {
         publisherName: arcticle.publisherName,
         publishDate: arcticle.publishDate,
         commentsCount: arcticle.commentsCount,
-        isFavourite: arcticle.isFavourite,
       ),
       error: (_) => state = const ArcticleState.idle(),
     );

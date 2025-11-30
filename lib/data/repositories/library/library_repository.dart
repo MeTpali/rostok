@@ -17,6 +17,12 @@ abstract class LibraryRepository {
   /// Запрос на получение похожих статей.
   Future<Result<List<Topic>>> fetchSameArticles({required int articleId});
 
+  /// Запрос на получение списка статей, написанных мастером.
+  Future<Result<List<Topic>>> fetchFavouriteArticles();
+
+  /// Запрос на получение списка статей, написанных мастером.
+  Future<Result<List<Topic>>> toggleLikeArticle({required int id});
+
   /// Запрос на добавление статьи в избранное.
   Future<Result<Article>> likeArticle({required int articleId});
 

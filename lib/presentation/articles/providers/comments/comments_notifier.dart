@@ -9,6 +9,7 @@ class CommentsNotifier extends StateNotifier<List<Comment>> {
   CommentsNotifier({required LibraryRepository libraryRepository})
     : _libraryRepository = libraryRepository,
       super([]);
+  int _commentsId = 100;
 
   Future<void> fetchComments({required int articleId}) async {
     final result = await _libraryRepository.fetchComments(articleId: articleId);
@@ -21,14 +22,49 @@ class CommentsNotifier extends StateNotifier<List<Comment>> {
     required String text,
     int? parentId,
   }) async {
-    final result = await _libraryRepository.createComment(
+    await _libraryRepository.createComment(
       articleId: articleId,
       text: text,
       parentId: parentId,
     );
 
-    result.whenOrNull(success: (comments) => state = comments);
-    return result;
+    final _comments = List<Comment>.from(state);
+    if (parentId == null) {
+      _commentsId++;
+      _comments.add(
+        Comment(
+          id: _commentsId,
+          sender: 'Я',
+          dateTime: DateTime.now(),
+          content: text,
+        ),
+      );
+      state = _comments;
+      return Result.success(_comments);
+    }
+
+    final newComments = _comments.map((comment) {
+      if (comment.id == parentId ||
+          comment.subcomments.indexWhere((com) => com.id == parentId) != -1) {
+        final subs = List<Comment>.from(comment.subcomments);
+        _commentsId++;
+        subs.add(
+          Comment(
+            id: _commentsId,
+            sender: 'Я',
+            dateTime: DateTime.now(),
+            content: text,
+          ),
+        );
+        return comment.copyWith(subcomments: subs);
+      }
+
+      return comment;
+    }).toList();
+    // ignore: join_return_with_assignment
+
+    state = newComments;
+    return Result.success(newComments);
   }
 
   Future<void> deleteComment({

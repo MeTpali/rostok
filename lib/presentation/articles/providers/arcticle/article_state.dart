@@ -13,7 +13,6 @@ class ArcticleState with _$ArcticleState {
     required String publisherName,
     required DateTime publishDate,
     required int commentsCount,
-    @Default(false) bool isFavourite,
   }) = ResolvedArcticleState;
 
   const factory ArcticleState.idle() = IdleArcticleState;

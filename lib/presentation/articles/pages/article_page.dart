@@ -61,6 +61,14 @@ class _ArticlePageState extends ConsumerState<ArticlePage> {
   Widget build(BuildContext context) {
     final articleState = ref.watch(ArticlesDi.arcticleProvider);
     final sameArticlesState = ref.watch(ArticlesDi.sameArcticlesProvider);
+    final coms = ref.watch(ArticlesDi.commentsProvider);
+    int comsLength = 0;
+    for (final com in coms) {
+      for (final _ in com.subcomments) {
+        comsLength++;
+      }
+      comsLength++;
+    }
 
     return Scaffold(
       appBar: TransparentAppBar(
@@ -86,22 +94,26 @@ class _ArticlePageState extends ConsumerState<ArticlePage> {
                 height: 22,
                 width: 22,
                 colorMapper: IconColorMapper(
-                  fillColor: articleState.maybeMap(
-                    orElse: () => Colors.transparent,
-                    resolved: (article) => article.isFavourite
-                        ? Colors.redAccent
-                        : Colors.transparent,
-                  ),
+                  fillColor:
+                      ref
+                              .watch(ArticlesDi.favouriteArticlesProvider)
+                              .indexWhere((art) => art.id == widget.id) !=
+                          -1
+                      ? Colors.redAccent
+                      : Colors.transparent,
                 ),
               ),
               iconPadding: const EdgeInsets.all(10.0),
               backgroundColor: AppColors.seaGreen,
+              onPressed: () async => ref
+                  .read(ArticlesDi.favouriteArticlesProvider.notifier)
+                  .toggleFavorite(widget.id),
             ),
-            AppIconButton(
-              icon: SvgPicture.asset(AppIcons.upload),
-              iconPadding: const EdgeInsets.all(10.0),
-              backgroundColor: AppColors.seaGreen,
-            ),
+            // AppIconButton(
+            //   icon: SvgPicture.asset(AppIcons.upload),
+            //   iconPadding: const EdgeInsets.all(10.0),
+            //   backgroundColor: AppColors.seaGreen,
+            // ),
           ],
         ),
       ),
@@ -188,7 +200,7 @@ class _ArticlePageState extends ConsumerState<ArticlePage> {
                           children: [
                             SvgPicture.asset(AppIcons.message),
                             Text(
-                              '${article.commentsCount} комментария',
+                              '${comsLength} комментариев',
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -223,7 +235,8 @@ class _ArticlePageState extends ConsumerState<ArticlePage> {
                   KnowledgeBlock(
                     title: 'Ещё на эту тему',
                     topics: sameArticles.arcticles,
-                    onTopic: (id) => context.router.push(ArticleRoute(id: id)),
+                    onTopic: (topic) =>
+                        context.router.push(ArticleRoute(id: topic.$1)),
                   ),
                 ],
               ),

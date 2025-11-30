@@ -5,11 +5,14 @@ import 'package:riverpod/riverpod.dart';
 import '../../../data/repositories/library/library_repository.dart';
 import '../../../di/di.dart';
 import '../../../domain/models/articles/comment/comment.dart';
+import '../../../domain/models/articles/topic/topic.dart';
+import '../../profile/providers/profile_di.dart';
 import 'arcticle/article_notifier.dart';
 import 'arcticle/article_state.dart';
 import 'arcticles/arcticles_notifier.dart';
 import 'arcticles/arcticles_state.dart';
 import 'comments/comments_notifier.dart';
+import 'favourite_articles/favourite_articles_notifier.dart';
 import 'library/library_notifier.dart';
 import 'library/library_state.dart';
 import 'same_articles/same_arcticles_notifier.dart';
@@ -48,4 +51,14 @@ abstract class ArticlesDi {
         (ref) =>
             CommentsNotifier(libraryRepository: getIt<LibraryRepository>()),
       );
+
+  static final favouriteArticlesProvider =
+      StateNotifierProvider<FavouriteArticlesNotifier, List<Topic>>((ref) {
+        final notifier = FavouriteArticlesNotifier(
+          libraryRepository: getIt<LibraryRepository>(),
+          authNotifier: ref.watch(ProfileDi.profileProvider.notifier),
+        );
+        unawaited(notifier.init());
+        return notifier;
+      });
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../../core/constants/app_icons.dart';
@@ -19,13 +20,15 @@ class ActivitiesCard extends ConsumerWidget {
     child: ColoredBox(
       color: AppColors.base0,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildSectionTitle('Избранное'),
           _buildTile(
             context: context,
             title: 'Статьи',
-            onTap: () {},
+            onTap: () async =>
+                context.router.push(const FavouriteArticlesRoute()),
             isFirstOfCard: true,
             leading: SvgPicture.asset(
               AppIcons.book,
@@ -40,7 +43,8 @@ class ActivitiesCard extends ConsumerWidget {
           _buildTile(
             context: context,
             title: 'Преподаватели',
-            onTap: () {},
+            onTap: () async =>
+                context.router.push(const FavouriteMastersRoute()),
             leading: SvgPicture.asset(
               AppIcons.grid,
               width: 18,
@@ -87,22 +91,9 @@ class ActivitiesCard extends ConsumerWidget {
           _buildDivider(),
           _buildTile(
             context: context,
-            title: 'Реферальная программа',
-            onTap: () {},
-            leading: SvgPicture.asset(AppIcons.userAdd, width: 18, height: 18),
-          ),
-          _buildDivider(),
-          _buildTile(
-            context: context,
-            title: 'Приложение для Преподавателей',
-            onTap: () {},
-            leading: SvgPicture.asset(AppIcons.reward, width: 18, height: 18),
-          ),
-          _buildDivider(),
-          _buildTile(
-            context: context,
             title: 'Поддержка',
-            onTap: () {},
+            onTap: () async =>
+                url_launcher.launchUrl(Uri.parse('https://t.me/PremiumRussia')),
             isLastOfCard: true,
             leading: SvgPicture.asset(AppIcons.shield, width: 18, height: 18),
           ),
@@ -111,10 +102,43 @@ class ActivitiesCard extends ConsumerWidget {
           Center(
             child: GestureDetector(
               onTap: () async {
-                await ref.read(ProfileDi.authProvider.notifier).logoutLocal();
-                if (context.mounted) {
-                  await context.router.replaceAll([HomeRoute()]);
-                }
+                // await ref.read(ProfileDi.authProvider.notifier).logoutLocal();
+                // if (context.mounted) {
+                //   await context.router.replaceAll([HomeRoute()]);
+                // }
+                await showDialog<void>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text(
+                      'Вы действительно хотите выйти из профиля?',
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () => context.router.maybePop(),
+                        child: const Text(
+                          'Отмена',
+                          style: TextStyle(color: Colors.redAccent),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await ref
+                              .read(ProfileDi.authProvider.notifier)
+                              .logoutLocal();
+                          if (context.mounted) {
+                            await context.router.replaceAll([HomeRoute()]);
+                          }
+                          if (!context.mounted) return;
+                          await context.router.maybePop();
+                        },
+                        child: const Text(
+                          'Выход',
+                          style: TextStyle(color: AppColors.fairway),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
               },
               child: const Text(
                 'Выйти из профиля',

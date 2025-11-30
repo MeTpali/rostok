@@ -10,7 +10,7 @@ import '../cards/topic_card.dart';
 class KnowledgeBlock extends StatelessWidget {
   final String title;
   final List<Topic> topics;
-  final ValueChanged<int>? onTopic;
+  final ValueChanged<(int, String)>? onTopic;
   const KnowledgeBlock({
     required this.title,
     required this.topics,
@@ -41,7 +41,7 @@ class KnowledgeBlock extends StatelessWidget {
             description: topics[i].description,
             titleMaxLines: 1,
             imageSize: const Size(127, 94),
-            onTap: () => onTopic?.call(topics[i].id),
+            onTap: () => onTopic?.call((topics[i].id, topics[i].title)),
           ),
         ),
         separatorBuilder: (_, __) => const SizedBox(width: 10),

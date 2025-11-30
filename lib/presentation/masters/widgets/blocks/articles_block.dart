@@ -27,6 +27,9 @@ class MasterArticlesBlock extends ConsumerWidget {
       color: AppColors.brilliance,
     ),
     titlePadding: const EdgeInsets.fromLTRB(14.0, 0.0, 14.0, 16.0),
+    onTap: () => context.router.push(
+      SimpleArticlesRoute(title: 'Статьи от автора', topics: articles),
+    ),
     action: articles.length > 4
         ? GestureDetector(
             child: Row(

@@ -78,18 +78,54 @@ class ArticleRouteArgs {
 
 /// generated route for
 /// [ArticlesPage]
-class ArticlesRoute extends PageRouteInfo<void> {
-  const ArticlesRoute({List<PageRouteInfo>? children})
-    : super(ArticlesRoute.name, initialChildren: children);
+class ArticlesRoute extends PageRouteInfo<ArticlesRouteArgs> {
+  ArticlesRoute({
+    required int topicId,
+    required String topicTitle,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ArticlesRoute.name,
+         args: ArticlesRouteArgs(
+           topicId: topicId,
+           topicTitle: topicTitle,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ArticlesRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ArticlesPage();
+      final args = data.argsAs<ArticlesRouteArgs>();
+      return ArticlesPage(
+        topicId: args.topicId,
+        topicTitle: args.topicTitle,
+        key: args.key,
+      );
     },
   );
+}
+
+class ArticlesRouteArgs {
+  const ArticlesRouteArgs({
+    required this.topicId,
+    required this.topicTitle,
+    this.key,
+  });
+
+  final int topicId;
+
+  final String topicTitle;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ArticlesRouteArgs{topicId: $topicId, topicTitle: $topicTitle, key: $key}';
+  }
 }
 
 /// generated route for
@@ -202,6 +238,38 @@ class DayCardRouteArgs {
   String toString() {
     return 'DayCardRouteArgs{card: $card, description: $description, key: $key}';
   }
+}
+
+/// generated route for
+/// [FavouriteArticlesPage]
+class FavouriteArticlesRoute extends PageRouteInfo<void> {
+  const FavouriteArticlesRoute({List<PageRouteInfo>? children})
+    : super(FavouriteArticlesRoute.name, initialChildren: children);
+
+  static const String name = 'FavouriteArticlesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FavouriteArticlesPage();
+    },
+  );
+}
+
+/// generated route for
+/// [FavouriteMastersPage]
+class FavouriteMastersRoute extends PageRouteInfo<void> {
+  const FavouriteMastersRoute({List<PageRouteInfo>? children})
+    : super(FavouriteMastersRoute.name, initialChildren: children);
+
+  static const String name = 'FavouriteMastersRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FavouriteMastersPage();
+    },
+  );
 }
 
 /// generated route for
@@ -432,6 +500,54 @@ class RegistrationRoute extends PageRouteInfo<void> {
       return const RegistrationPage();
     },
   );
+}
+
+/// generated route for
+/// [SimpleArticlesPage]
+class SimpleArticlesRoute extends PageRouteInfo<SimpleArticlesRouteArgs> {
+  SimpleArticlesRoute({
+    required String title,
+    required List<Topic> topics,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         SimpleArticlesRoute.name,
+         args: SimpleArticlesRouteArgs(title: title, topics: topics, key: key),
+         initialChildren: children,
+       );
+
+  static const String name = 'SimpleArticlesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SimpleArticlesRouteArgs>();
+      return SimpleArticlesPage(
+        title: args.title,
+        topics: args.topics,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class SimpleArticlesRouteArgs {
+  const SimpleArticlesRouteArgs({
+    required this.title,
+    required this.topics,
+    this.key,
+  });
+
+  final String title;
+
+  final List<Topic> topics;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SimpleArticlesRouteArgs{title: $title, topics: $topics, key: $key}';
+  }
 }
 
 /// generated route for

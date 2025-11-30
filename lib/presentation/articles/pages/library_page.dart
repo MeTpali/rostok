@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,13 +56,13 @@ class LibraryPage extends ConsumerWidget {
                         KnowledgeBlock(
                           title: knowledge.title,
                           topics: knowledge.topics,
-                          onTopic: (id) async {
-                            unawaited(
-                              ref
-                                  .read(ArticlesDi.arcticlesProvider.notifier)
-                                  .fetchArcticles(topicId: id),
+                          onTopic: (topic) async {
+                            await context.router.push(
+                              ArticlesRoute(
+                                topicId: topic.$1,
+                                topicTitle: topic.$2,
+                              ),
                             );
-                            await context.router.push(const ArticlesRoute());
                           },
                         ),
                   ],

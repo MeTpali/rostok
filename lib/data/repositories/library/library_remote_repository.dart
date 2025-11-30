@@ -62,4 +62,16 @@ class LibraryRemoteRepository implements LibraryRepository {
     // TODO: implement fetchComments
     throw UnimplementedError();
   }
+
+  @override
+  Future<Result<List<Topic>>> fetchFavouriteArticles() {
+    // TODO: implement fetchFavouriteMasters
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<List<Topic>>> toggleLikeArticle({required int id}) {
+    // TODO: implement toggleLikeMaster
+    throw UnimplementedError();
+  }
 }

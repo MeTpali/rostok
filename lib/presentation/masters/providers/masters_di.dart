@@ -4,7 +4,7 @@ import 'package:riverpod/riverpod.dart';
 
 import '../../../data/repositories/masters/masters_repository.dart';
 import '../../../di/di.dart';
-import '../../../domain/models/masters/master_model/master_model.dart';
+import '../../../domain/models/masters/master/master.dart';
 import '../../profile/providers/profile_di.dart';
 import 'favourite_masters/favourite_masters_notifier.dart';
 import 'master/master_notifier.dart';
@@ -15,11 +15,25 @@ import 'master_comments/master_comments_notifier.dart';
 import 'master_comments/master_comments_state.dart';
 import 'masters/masters_notifier.dart';
 import 'masters/masters_state.dart';
+import 'preview_masters/preview_masters_notifier.dart';
+import 'preview_masters/preview_masters_state.dart';
 
 abstract class MastersDi {
   static final mastersProvider =
       StateNotifierProvider.autoDispose<MastersNotifier, MastersState>((ref) {
         final mastersNotifier = MastersNotifier(
+          mastersRepository: getIt<MastersRepository>(),
+        );
+        unawaited(mastersNotifier.init());
+        return mastersNotifier;
+      });
+
+  static final previewMastersProvider =
+      StateNotifierProvider.autoDispose<
+        PreviewMastersNotifier,
+        PreviewMastersState
+      >((ref) {
+        final mastersNotifier = PreviewMastersNotifier(
           mastersRepository: getIt<MastersRepository>(),
         );
         unawaited(mastersNotifier.init());
@@ -52,10 +66,12 @@ abstract class MastersDi {
       );
 
   static final facouriteMastersProvider =
-      StateNotifierProvider<FavouriteMastersNotifier, List<MasterModel>>(
-        (ref) => FavouriteMastersNotifier(
+      StateNotifierProvider<FavouriteMastersNotifier, List<Master>>((ref) {
+        final notifier = FavouriteMastersNotifier(
           mastersRepository: getIt<MastersRepository>(),
           authNotifier: ref.watch(ProfileDi.profileProvider.notifier),
-        ),
-      );
+        );
+        unawaited(notifier.init());
+        return notifier;
+      });
 }

@@ -76,4 +76,16 @@ class LibraryTestRepository implements LibraryRepository {
     );
     return const Result.success(null);
   }
+
+  @override
+  Future<Result<List<Topic>>> fetchFavouriteArticles() async {
+    final favouriteArticles = await _libraryService.fetchFavouiteArticles();
+    return Result.success(favouriteArticles);
+  }
+
+  @override
+  Future<Result<List<Topic>>> toggleLikeArticle({required int id}) async {
+    final mastersList = await _libraryService.toggleLikeArticle(id: id);
+    return Result.success(mastersList);
+  }
 }

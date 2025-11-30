@@ -72,11 +72,12 @@ class HomePage extends StatelessWidget {
                 label: 'Преподаватели',
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 5.0),
-                  child: SvgPicture.asset(
-                    AppIcons.grid,
-                    colorFilter: _getIconColor(1, tabsRouter.activeIndex),
-                    height: 26,
-                    width: 26,
+                  child: Icon(
+                    Icons.people_alt,
+                    size: 26,
+                    color: tabsRouter.activeIndex == 1
+                        ? AppColors.transparentBlue
+                        : AppColors.transparentBlue.withAlpha(123),
                   ),
                 ),
               ),

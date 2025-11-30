@@ -38,7 +38,7 @@ class MainPage extends ConsumerWidget {
       ),
       body: RefreshIndicator.adaptive(
         onRefresh: () async {
-          ref.invalidate(MastersDi.mastersProvider);
+          ref.invalidate(MastersDi.previewMastersProvider);
           ref.invalidate(MainDi.topicsProvider);
           ref.invalidate(MainDi.practicesProvider);
           ref.invalidate(ArticlesDi.libraryProvider);

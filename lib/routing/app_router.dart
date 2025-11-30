@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../domain/models/articles/topic/topic.dart';
 import '../domain/models/universe/universe_answer/universe_answer.dart';
 import '../presentation/articles/pages/article_page.dart';
 import '../presentation/articles/pages/articles_page.dart';
 import '../presentation/articles/pages/articles_shell_page.dart';
+import '../presentation/articles/pages/favourite_articles_page.dart';
 import '../presentation/articles/pages/library_page.dart';
+import '../presentation/articles/pages/simple_articles_page.dart';
 import '../presentation/chat/pages/chat_page.dart';
 import '../presentation/chat/pages/chat_shell_page.dart';
 import '../presentation/day_card/pages/day_card_page.dart';
@@ -13,6 +16,7 @@ import '../presentation/home/app_loading_page.dart';
 import '../presentation/home/home_page.dart';
 import '../presentation/main/pages/main_page.dart';
 import '../presentation/main/pages/main_shell_page.dart';
+import '../presentation/masters/pages/favourite_masters_page.dart';
 import '../presentation/masters/pages/master_page.dart';
 import '../presentation/masters/pages/masters_page.dart';
 import '../presentation/masters/pages/masters_shell_page.dart';
@@ -51,6 +55,9 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: AddBalancedRoute.page),
             AutoRoute(page: UniverseQuestionSettingsRoute.page),
             AutoRoute(page: UniverseAnswerRoute.page),
+            AutoRoute(page: FavouriteArticlesRoute.page),
+            AutoRoute(page: SimpleArticlesRoute.page),
+            AutoRoute(page: FavouriteMastersRoute.page),
           ],
         ),
         AutoRoute(
@@ -59,15 +66,9 @@ class AppRouter extends RootStackRouter {
             AutoRoute(initial: true, page: MastersRoute.page),
             AutoRoute(page: DayCardRoute.page),
             AutoRoute(page: ArticleRoute.page),
-          ],
-        ),
-        AutoRoute(
-          page: UniverseShellRoute.page,
-          children: [
-            AutoRoute(page: UniverseRoute.page),
-            AutoRoute(page: DayCardRoute.page),
-            AutoRoute(initial: true, page: UniverseQuestionSettingsRoute.page),
-            AutoRoute(page: UniverseAnswerRoute.page),
+            AutoRoute(page: FavouriteArticlesRoute.page),
+            AutoRoute(page: SimpleArticlesRoute.page),
+            AutoRoute(page: FavouriteMastersRoute.page),
           ],
         ),
         AutoRoute(
@@ -75,6 +76,9 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(initial: true, page: ChatRoute.page),
             AutoRoute(page: DayCardRoute.page),
+            AutoRoute(page: FavouriteArticlesRoute.page),
+            AutoRoute(page: SimpleArticlesRoute.page),
+            AutoRoute(page: FavouriteMastersRoute.page),
           ],
         ),
         AutoRoute(
@@ -84,6 +88,9 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: DayCardRoute.page),
             AutoRoute(page: ArticlesRoute.page),
             AutoRoute(page: ArticleRoute.page),
+            AutoRoute(page: FavouriteArticlesRoute.page),
+            AutoRoute(page: SimpleArticlesRoute.page),
+            AutoRoute(page: FavouriteMastersRoute.page),
           ],
         ),
       ],
@@ -92,5 +99,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: MasterRoute.page),
     AutoRoute(page: ArticleRoute.page),
     AutoRoute(page: VideoRoute.page),
+    AutoRoute(page: FavouriteArticlesRoute.page),
+    AutoRoute(page: SimpleArticlesRoute.page),
+    AutoRoute(page: FavouriteMastersRoute.page),
   ];
 }

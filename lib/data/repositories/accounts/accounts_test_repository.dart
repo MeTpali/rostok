@@ -9,19 +9,18 @@ class AccountsTestRepository implements AccountsRepository {
 
   UserModel me = const UserModel(
     userId: 1,
-    userUuid: '1',
-    firstName: 'Годзё',
-    lastName: 'Сатору',
-    phone: '+7 (977) 777-77-77',
-    email: 'gojo@sato.ru',
+    userUuid: '7f1d8b02-4c9d-4f1b-9b4e-2a918f83ea45',
+    firstName: 'Artem',
+    lastName: 'Sokolov',
+    phone: '+79991234567',
+    email: 'artem.sokolov@example.com',
     about:
-        'Гордость Семьи Годзё, первый за четыреста лет человек, унаследовавший и Безграничность, и Шесть Глаз.',
-    birthDate: '15-07-1996',
-    birthTime: '20:31',
-    gender: 'M',
-    birthCity: 'Sibuya',
-    avatarUrl:
-        'https://comicvine.gamespot.com/a/uploads/original/11172/111724681/9336474-9116190-d6dc9-16953963622489-1920.jpg',
+        'Учу английский для повышения квалификации и готовлюсь к экзамену FCE.',
+    birthDate: '2002-03-14',
+    birthTime: '14:32',
+    gender: 'male',
+    birthCity: 'Saint Petersburg',
+    avatarUrl: 'https://i.pravatar.cc/300?img=12',
   );
 
   @override

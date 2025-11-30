@@ -32,8 +32,6 @@ class ProfileMainInfo extends StatelessWidget {
       const SizedBox(height: 24),
       _buildName(),
       const SizedBox(height: 8),
-      _buildInfoLine('$birthDate  $birthTime'),
-      const SizedBox(height: 4),
       _buildInfoLine(phone),
       const SizedBox(height: 24),
       _buildBadges(),
