@@ -10,7 +10,6 @@ import '../../../../core/widgets/cards/app_card.dart';
 import '../../../../core/widgets/skeleton/app_skeleton.dart';
 import '../../../../core/widgets/text/expandable_text.dart';
 import '../../../../core/widgets/types/bracing.dart';
-import '../../../mock/mock_practice_button.dart';
 import '../../../mock/mock_topic_button.dart';
 import '../tiles/info_item_tile.dart';
 
@@ -306,27 +305,6 @@ class LoadingMasterInfoCard extends StatelessWidget {
                   borderRadius: 4,
                 ),
               ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        MenuBlock(
-          title: 'Практики',
-          titlePadding: const EdgeInsets.only(bottom: 14.0, left: 14.0),
-          titleStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: AppColors.carbonFiber,
-          ),
-          child: SizedBox(
-            height: 91,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              itemCount: 10,
-              itemBuilder: (_, index) =>
-                  const SizedBox(width: 90, child: MockPracticeButton()),
-              separatorBuilder: (_, __) => const SizedBox(width: 14),
             ),
           ),
         ),
