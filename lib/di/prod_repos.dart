@@ -17,6 +17,8 @@ import '../data/repositories/practices/practices_remote_repository.dart';
 import '../data/repositories/practices/practices_repository.dart';
 import '../data/repositories/topics/topics_remote_repository.dart';
 import '../data/repositories/topics/topics_repository.dart';
+import '../data/repositories/bookings/bookings_repository.dart';
+import '../data/repositories/bookings/bookings_test_repository.dart';
 import '../data/repositories/universe/universe_remote_repository.dart';
 import '../data/repositories/universe/universe_repository.dart';
 import '../data/services/masters/masters_remote_service.dart';
@@ -79,4 +81,7 @@ void setupProdRepos() {
 
   /// Universe
   getIt.registerSingleton<UniverseRepository>(const UniverseRemoteRepository());
+
+  /// Bookings
+  getIt.registerSingleton<BookingsRepository>(BookingsTestRepository());
 }

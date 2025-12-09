@@ -100,9 +100,13 @@ class FavouriteMastersPage extends ConsumerWidget {
                                     ),
                                     actions: [
                                       TextButton(
-                                        onPressed: () => context.router.push(
-                                          const AuthorizationRoute(),
-                                        ),
+                                        onPressed: () async {
+                                          await context.router.push(
+                                            const AuthorizationRoute(),
+                                          );
+                                          if (!context.mounted) return;
+                                          await context.router.maybePop();
+                                        },
                                         child: const Text('Авторизоваться'),
                                       ),
                                     ],

@@ -79,13 +79,15 @@ class PranaStatCard extends StatelessWidget {
 
 class ConsultationsStatCard extends StatelessWidget {
   final String value;
-  const ConsultationsStatCard({required this.value, super.key});
+  final VoidCallback? onTap;
+  const ConsultationsStatCard({required this.value, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) => StatInfoCard(
     title: 'Мои консультации',
     value: value,
     trailingIcon: SvgPicture.asset(AppIcons.clock, width: 17, height: 17),
+    onTap: onTap,
     bgIconsBuilder: (size) => [
       Positioned(
         left: size.width * 0.73,

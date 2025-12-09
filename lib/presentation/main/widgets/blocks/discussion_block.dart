@@ -53,7 +53,12 @@ class DiscussionBlock extends ConsumerWidget {
                   size: 16,
                   color: AppColors.fairway,
                 ),
-                height: 32,
+                height: 38,
+                disabledLabelStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.fairway,
+                ),
                 disabledColor: AppColors.transparentBlue,
                 elevation: 5.0,
                 onTap: () async {

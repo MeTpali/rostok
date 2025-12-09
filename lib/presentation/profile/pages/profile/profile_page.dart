@@ -11,6 +11,7 @@ import '../../../../core/widgets/cards/app_card.dart';
 import '../../../../core/widgets/overlay/overlay_item.dart';
 import '../../../../core/widgets/overlay/overlay_wrap.dart';
 import '../../../../core/widgets/types/bracing.dart';
+import '../../../notes/providers/notes_di.dart';
 import '../../providers/profile_di.dart';
 import '../../widgets/cards/payment_method_card.dart';
 import '../../widgets/cards/profile_stat_cards.dart';
@@ -75,11 +76,23 @@ class ProfilePage extends ConsumerWidget {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(vertical: 14.0),
                   children: [
-                    const Row(
+                    Row(
                       spacing: 12,
                       children: [
-                        Expanded(child: PranaStatCard(value: '1000')),
-                        Expanded(child: ConsultationsStatCard(value: '2')),
+                        const Expanded(child: PranaStatCard(value: '1000')),
+                        Expanded(
+                          child: ConsultationsStatCard(
+                            value: ref
+                                .watch(NotesDi.notesProvider)
+                                .maybeMap(
+                                  orElse: () => '0',
+                                  resolved: (value) =>
+                                      value.bookings.length.toString(),
+                                ),
+                            onTap: () =>
+                                AutoTabsRouter.of(context).setActiveIndex(2),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 12),

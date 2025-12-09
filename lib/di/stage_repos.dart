@@ -15,6 +15,8 @@ import '../data/repositories/practices/practices_test_repository.dart';
 import '../data/repositories/token/token_test_repository.dart';
 import '../data/repositories/topics/topics_repository.dart';
 import '../data/repositories/topics/topics_test_repository.dart';
+import '../data/repositories/bookings/bookings_repository.dart';
+import '../data/repositories/bookings/bookings_test_repository.dart';
 import '../data/repositories/universe/universe_repository.dart';
 import '../data/repositories/universe/universe_test_repository.dart';
 import '../data/services/library/library_test_service.dart';
@@ -64,4 +66,7 @@ void setupStageRepos() {
   getIt.registerSingleton<UniverseRepository>(
     UniverseTestRepository(universeTestService: getIt<UniverseTestService>()),
   );
+
+  /// Bookings
+  getIt.registerSingleton<BookingsRepository>(BookingsTestRepository());
 }

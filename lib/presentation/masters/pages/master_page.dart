@@ -80,7 +80,8 @@ class _MasterPageState extends ConsumerState<MasterPage> {
                       height: MediaQuery.of(context).size.height / 3,
                     ),
                     resolved: (master) => MasterAppBar(
-                      imageUrl: master.url,
+                      imageUrl:
+                          'https://avatars.mds.yandex.net/i?id=c18d54be0eaf4d99edf680525a455c5eb8d4d110-4010157-images-thumbs&n=13',
                       isFavourite:
                           ref
                               .watch(MastersDi.facouriteMastersProvider)
@@ -160,8 +161,11 @@ class _MasterPageState extends ConsumerState<MasterPage> {
                     ),
                     actions: [
                       TextButton(
-                        onPressed: () =>
-                            context.router.push(const AuthorizationRoute()),
+                        onPressed: () async {
+                          await context.router.push(const AuthorizationRoute());
+                          if (!context.mounted) return;
+                          await context.router.maybePop();
+                        },
                         child: const Text('Авторизоваться'),
                       ),
                     ],

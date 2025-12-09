@@ -1,14 +1,20 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../data/repositories/bookings/bookings_repository.dart';
 import '../../../../data/repositories/masters/masters_repository.dart';
+import '../../../../domain/models/bookings/booking/booking.dart';
 import '../../../../domain/models/masters/master_profile/master_profile.dart';
 import 'booking_state.dart';
 
 class BookingNotifier extends StateNotifier<BookingState> {
   final MastersRepository _mastersRepository;
+  final BookingsRepository _bookingsRepository;
 
-  BookingNotifier({required MastersRepository mastersRepository})
-      : _mastersRepository = mastersRepository,
+  BookingNotifier({
+    required MastersRepository mastersRepository,
+    required BookingsRepository bookingsRepository,
+  })  : _mastersRepository = mastersRepository,
+        _bookingsRepository = bookingsRepository,
         super(const BookingState.idle());
 
   Future<void> init({required int masterId}) async {
@@ -30,12 +36,14 @@ class BookingNotifier extends StateNotifier<BookingState> {
     );
   }
 
-  void selectTopic(String? topic) {
+  void selectTopic(String topic) {
     state.maybeWhen(
       resolved: (master, selectedTopic, selectedDateTime, availableTimeSlots) {
+        // Toggle: if already selected, deselect it
+        final newTopic = selectedTopic == topic ? null : topic;
         state = BookingState.resolved(
           master: master,
-          selectedTopic: topic,
+          selectedTopic: newTopic,
           selectedDateTime: selectedDateTime,
           availableTimeSlots: availableTimeSlots,
         );
@@ -46,11 +54,19 @@ class BookingNotifier extends StateNotifier<BookingState> {
 
   void selectDateTime(DateTime dateTime) {
     state.maybeWhen(
-      resolved: (master, selectedTopic, _, availableTimeSlots) {
+      resolved: (master, selectedTopic, selectedDateTime, availableTimeSlots) {
+        // Toggle: if already selected, deselect it
+        final isAlreadySelected = selectedDateTime != null &&
+            selectedDateTime.year == dateTime.year &&
+            selectedDateTime.month == dateTime.month &&
+            selectedDateTime.day == dateTime.day &&
+            selectedDateTime.hour == dateTime.hour &&
+            selectedDateTime.minute == dateTime.minute;
+        final newDateTime = isAlreadySelected ? null : dateTime;
         state = BookingState.resolved(
           master: master,
           selectedTopic: selectedTopic,
-          selectedDateTime: dateTime,
+          selectedDateTime: newDateTime,
           availableTimeSlots: availableTimeSlots,
         );
       },
@@ -60,13 +76,30 @@ class BookingNotifier extends StateNotifier<BookingState> {
 
   Future<bool> submitBooking() async {
     return state.maybeWhen(
-      resolved: (master, selectedTopic, selectedDateTime, _) {
+      resolved: (master, selectedTopic, selectedDateTime, _) async {
         if (selectedTopic == null || selectedDateTime == null) {
           state = const BookingState.error('Выберите тему и время');
           return false;
         }
-        // TODO: Implement actual booking submission
-        return true;
+
+        final booking = Booking(
+          dateTime: selectedDateTime,
+          masterFirstName: master.firstName,
+          masterLastName: master.lastName,
+          topic: selectedTopic,
+          duration: master.timing,
+          conferenceLink: 'https://meet.google.com/room-${master.id}-${selectedDateTime.millisecondsSinceEpoch}',
+        );
+
+        final result = await _bookingsRepository.addBooking(booking);
+
+        return result.when(
+          success: (_) => true,
+          error: (_) {
+            state = const BookingState.error('Не удалось создать запись');
+            return false;
+          },
+        );
       },
       orElse: () {
         state = const BookingState.error('Неверное состояние');
