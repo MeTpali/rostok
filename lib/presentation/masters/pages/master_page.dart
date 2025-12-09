@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_colors.dart';
+import '../../../routing/app_router.dart';
+import '../../profile/providers/profile_di.dart';
 import '../providers/masters_di.dart';
 import '../widgets/app_bars/master_app_bar.dart';
 import '../widgets/blocks/articles_block.dart';
@@ -98,7 +100,7 @@ class _MasterPageState extends ConsumerState<MasterPage> {
                       name: '${master.firstName} ${master.lastName}',
                       online: master.isOnline,
                       rating: master.rating,
-                      articlesCount: master.articlesCount,
+                      articlesCount: 15,
                       reviewsCount: master.reviewsCount,
                       descrption: master.description,
                       topics: master.topics,
@@ -140,7 +142,34 @@ class _MasterPageState extends ConsumerState<MasterPage> {
               ),
             ),
           ),
-          MasterBookButton(onTap: () {}),
+          MasterBookButton(
+            onTap: () async {
+              final profile = ref.read(ProfileDi.profileProvider);
+              if (profile.maybeMap(
+                orElse: () => false,
+                authorized: (_) => true,
+              )) {
+                await context.router.push(BookingRoute(masterId: widget.id));
+              } else {
+                await showDialog<void>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Авторизация'),
+                    content: const Text(
+                      'Для записи на занятие необходимо авторизоваться',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () =>
+                            context.router.push(const AuthorizationRoute()),
+                        child: const Text('Авторизоваться'),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            },
+          ),
         ],
       ),
     );

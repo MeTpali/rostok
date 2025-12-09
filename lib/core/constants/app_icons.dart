@@ -103,6 +103,7 @@ abstract class AppIcons {
   static const String book9 = '$_base/book9.svg';
   static const String testTube = '$_base/test_tube.svg';
   static const String idea = '$_base/idea.svg';
+  static const String notes = '$_base/notes.svg';
 
   /// PNG icons
   static const String lock = '$_base/lock.png';

@@ -14,14 +14,14 @@ class HomePage extends StatelessWidget {
   final _routes = const [
     MainShellRoute(),
     MastersShellRoute(),
-    ChatShellRoute(),
+    NotesShellRoute(),
     ArticlesShellRoute(),
   ];
 
   final List<PageRouteInfo> _initialRoutes = [
     const MainRoute(),
     MastersRoute(),
-    const ChatRoute(),
+    const NotesRoute(),
     const LibraryRoute(),
   ];
 
@@ -82,11 +82,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               BottomNavigationBarItem(
-                label: 'Чат',
+                label: 'Расписание',
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 5.0),
                   child: SvgPicture.asset(
-                    AppIcons.chat,
+                    AppIcons.notes,
                     colorFilter: _getIconColor(2, tabsRouter.activeIndex),
                     height: 26,
                     width: 26,

@@ -271,7 +271,7 @@ class MasterCard extends StatelessWidget {
                   const SizedBox(height: 12),
                   MainButton(
                     child: const Text(
-                      'Забронировать',
+                      'Записаться',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

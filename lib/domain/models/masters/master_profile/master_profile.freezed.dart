@@ -27,6 +27,8 @@ mixin _$MasterProfile {
   double get rating => throw _privateConstructorUsedError;
   int get reviewsCount => throw _privateConstructorUsedError;
   int get articlesCount => throw _privateConstructorUsedError;
+  int get timing =>
+      throw _privateConstructorUsedError; // среднее время занятия в минутах
   List<String> get practices => throw _privateConstructorUsedError;
   List<String> get topics => throw _privateConstructorUsedError;
 
@@ -55,6 +57,7 @@ abstract class $MasterProfileCopyWith<$Res> {
     double rating,
     int reviewsCount,
     int articlesCount,
+    int timing,
     List<String> practices,
     List<String> topics,
   });
@@ -85,6 +88,7 @@ class _$MasterProfileCopyWithImpl<$Res, $Val extends MasterProfile>
     Object? rating = null,
     Object? reviewsCount = null,
     Object? articlesCount = null,
+    Object? timing = null,
     Object? practices = null,
     Object? topics = null,
   }) {
@@ -130,6 +134,10 @@ class _$MasterProfileCopyWithImpl<$Res, $Val extends MasterProfile>
                 ? _value.articlesCount
                 : articlesCount // ignore: cast_nullable_to_non_nullable
                       as int,
+            timing: null == timing
+                ? _value.timing
+                : timing // ignore: cast_nullable_to_non_nullable
+                      as int,
             practices: null == practices
                 ? _value.practices
                 : practices // ignore: cast_nullable_to_non_nullable
@@ -164,6 +172,7 @@ abstract class _$$MasterProfileImplCopyWith<$Res>
     double rating,
     int reviewsCount,
     int articlesCount,
+    int timing,
     List<String> practices,
     List<String> topics,
   });
@@ -193,6 +202,7 @@ class __$$MasterProfileImplCopyWithImpl<$Res>
     Object? rating = null,
     Object? reviewsCount = null,
     Object? articlesCount = null,
+    Object? timing = null,
     Object? practices = null,
     Object? topics = null,
   }) {
@@ -238,6 +248,10 @@ class __$$MasterProfileImplCopyWithImpl<$Res>
             ? _value.articlesCount
             : articlesCount // ignore: cast_nullable_to_non_nullable
                   as int,
+        timing: null == timing
+            ? _value.timing
+            : timing // ignore: cast_nullable_to_non_nullable
+                  as int,
         practices: null == practices
             ? _value._practices
             : practices // ignore: cast_nullable_to_non_nullable
@@ -265,6 +279,7 @@ class _$MasterProfileImpl implements _MasterProfile {
     required this.rating,
     required this.reviewsCount,
     required this.articlesCount,
+    this.timing = 45,
     final List<String> practices = const <String>[],
     final List<String> topics = const <String>[],
   }) : _practices = practices,
@@ -290,7 +305,12 @@ class _$MasterProfileImpl implements _MasterProfile {
   final int reviewsCount;
   @override
   final int articlesCount;
+  @override
+  @JsonKey()
+  final int timing;
+  // среднее время занятия в минутах
   final List<String> _practices;
+  // среднее время занятия в минутах
   @override
   @JsonKey()
   List<String> get practices {
@@ -310,7 +330,7 @@ class _$MasterProfileImpl implements _MasterProfile {
 
   @override
   String toString() {
-    return 'MasterProfile(id: $id, firstName: $firstName, lastName: $lastName, description: $description, url: $url, videoUrl: $videoUrl, isOnline: $isOnline, rating: $rating, reviewsCount: $reviewsCount, articlesCount: $articlesCount, practices: $practices, topics: $topics)';
+    return 'MasterProfile(id: $id, firstName: $firstName, lastName: $lastName, description: $description, url: $url, videoUrl: $videoUrl, isOnline: $isOnline, rating: $rating, reviewsCount: $reviewsCount, articlesCount: $articlesCount, timing: $timing, practices: $practices, topics: $topics)';
   }
 
   @override
@@ -335,6 +355,7 @@ class _$MasterProfileImpl implements _MasterProfile {
                 other.reviewsCount == reviewsCount) &&
             (identical(other.articlesCount, articlesCount) ||
                 other.articlesCount == articlesCount) &&
+            (identical(other.timing, timing) || other.timing == timing) &&
             const DeepCollectionEquality().equals(
               other._practices,
               _practices,
@@ -355,6 +376,7 @@ class _$MasterProfileImpl implements _MasterProfile {
     rating,
     reviewsCount,
     articlesCount,
+    timing,
     const DeepCollectionEquality().hash(_practices),
     const DeepCollectionEquality().hash(_topics),
   );
@@ -380,6 +402,7 @@ abstract class _MasterProfile implements MasterProfile {
     required final double rating,
     required final int reviewsCount,
     required final int articlesCount,
+    final int timing,
     final List<String> practices,
     final List<String> topics,
   }) = _$MasterProfileImpl;
@@ -404,6 +427,8 @@ abstract class _MasterProfile implements MasterProfile {
   int get reviewsCount;
   @override
   int get articlesCount;
+  @override
+  int get timing; // среднее время занятия в минутах
   @override
   List<String> get practices;
   @override

@@ -161,6 +161,40 @@ class AuthorizationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BookingPage]
+class BookingRoute extends PageRouteInfo<BookingRouteArgs> {
+  BookingRoute({required int masterId, Key? key, List<PageRouteInfo>? children})
+    : super(
+        BookingRoute.name,
+        args: BookingRouteArgs(masterId: masterId, key: key),
+        initialChildren: children,
+      );
+
+  static const String name = 'BookingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<BookingRouteArgs>();
+      return BookingPage(masterId: args.masterId, key: args.key);
+    },
+  );
+}
+
+class BookingRouteArgs {
+  const BookingRouteArgs({required this.masterId, this.key});
+
+  final int masterId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'BookingRouteArgs{masterId: $masterId, key: $key}';
+  }
+}
+
+/// generated route for
 /// [ChatPage]
 class ChatRoute extends PageRouteInfo<void> {
   const ChatRoute({List<PageRouteInfo>? children})
@@ -434,6 +468,38 @@ class MastersShellRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MastersShellPage();
+    },
+  );
+}
+
+/// generated route for
+/// [NotesPage]
+class NotesRoute extends PageRouteInfo<void> {
+  const NotesRoute({List<PageRouteInfo>? children})
+    : super(NotesRoute.name, initialChildren: children);
+
+  static const String name = 'NotesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotesPage();
+    },
+  );
+}
+
+/// generated route for
+/// [NotesShellPage]
+class NotesShellRoute extends PageRouteInfo<void> {
+  const NotesShellRoute({List<PageRouteInfo>? children})
+    : super(NotesShellRoute.name, initialChildren: children);
+
+  static const String name = 'NotesShellRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotesShellPage();
     },
   );
 }

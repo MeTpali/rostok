@@ -13,6 +13,7 @@ import '../../../core/widgets/skeleton/app_skeleton.dart';
 import '../../../core/widgets/visuals/flexible_wrap.dart';
 import '../../../routing/app_router.dart';
 import '../../main/providers/main_di.dart';
+import '../../profile/providers/profile_di.dart';
 import '../providers/masters_di.dart';
 import '../widgets/dialogs/sort_bottom_sheet.dart';
 import '../widgets/pages/empty_masters_page.dart';
@@ -199,7 +200,6 @@ class _MastersPageState extends ConsumerState<MastersPage> {
                           timing: master.timing,
                           onTap: () async =>
                               context.router.push(MasterRoute(id: master.id)),
-                          onBook: () {},
                           isFavorite:
                               ref
                                   .watch(MastersDi.facouriteMastersProvider)
@@ -208,6 +208,36 @@ class _MastersPageState extends ConsumerState<MastersPage> {
                           onFavoriteToggle: () => ref
                               .read(MastersDi.facouriteMastersProvider.notifier)
                               .toggleFavorite(master.id),
+
+                          onBook: () async {
+                            final profile = ref.read(ProfileDi.profileProvider);
+                            if (profile.maybeMap(
+                              orElse: () => false,
+                              authorized: (_) => true,
+                            )) {
+                              await context.router.push(
+                                BookingRoute(masterId: master.id),
+                              );
+                            } else {
+                              await showDialog<void>(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text('Авторизация'),
+                                  content: const Text(
+                                    'Для записи на занятие необходимо авторизоваться',
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => context.router.push(
+                                        const AuthorizationRoute(),
+                                      ),
+                                      child: const Text('Авторизоваться'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                          },
                         ),
                     ],
                   ),

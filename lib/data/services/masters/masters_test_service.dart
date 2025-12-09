@@ -578,6 +578,7 @@ class MastersTestService {
     rating: 4.95,
     reviewsCount: 184,
     articlesCount: 26,
+    timing: 60,
     topics: [
       'Английский язык',
       'Подготовка к FCE',

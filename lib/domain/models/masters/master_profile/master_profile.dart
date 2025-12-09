@@ -15,6 +15,7 @@ class MasterProfile with _$MasterProfile {
     required double rating,
     required int reviewsCount,
     required int articlesCount,
+    @Default(45) int timing, // среднее время занятия в минутах
     @Default(<String>[]) List<String> practices,
     @Default(<String>[]) List<String> topics,
   }) = _MasterProfile;

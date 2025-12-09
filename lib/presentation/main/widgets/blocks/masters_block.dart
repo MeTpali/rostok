@@ -13,6 +13,7 @@ import '../../../../core/widgets/skeleton/app_skeleton.dart';
 import '../../../../core/widgets/visuals/flexible_wrap.dart';
 import '../../../../routing/app_router.dart';
 import '../../../masters/providers/masters_di.dart';
+import '../../../profile/providers/profile_di.dart';
 
 class MastersBlock extends ConsumerWidget {
   const MastersBlock({super.key});
@@ -55,7 +56,34 @@ class MastersBlock extends ConsumerWidget {
                 onFavoriteToggle: () => ref
                     .read(MastersDi.facouriteMastersProvider.notifier)
                     .toggleFavorite(mastersState.masters[i].id),
-                onBook: () {},
+                onBook: () async {
+                  final profile = ref.read(ProfileDi.profileProvider);
+                  if (profile.maybeMap(
+                    orElse: () => false,
+                    authorized: (_) => true,
+                  )) {
+                    await context.router.push(
+                      BookingRoute(masterId: mastersState.masters[i].id),
+                    );
+                  } else {
+                    await showDialog<void>(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Авторизация'),
+                        content: const Text(
+                          'Для записи на занятие необходимо авторизоваться',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                context.router.push(const AuthorizationRoute()),
+                            child: const Text('Авторизоваться'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
               ),
           ],
         ),

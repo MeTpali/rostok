@@ -9,6 +9,8 @@ import '../../profile/providers/profile_di.dart';
 import 'favourite_masters/favourite_masters_notifier.dart';
 import 'master/master_notifier.dart';
 import 'master/master_state.dart';
+import 'booking/booking_notifier.dart';
+import 'booking/booking_state.dart';
 import 'master_articles/master_articles_notifier.dart';
 import 'master_articles/master_articles_state.dart';
 import 'master_comments/master_comments_notifier.dart';
@@ -74,4 +76,9 @@ abstract class MastersDi {
         unawaited(notifier.init());
         return notifier;
       });
+
+  static final bookingProvider =
+      StateNotifierProvider.autoDispose<BookingNotifier, BookingState>(
+        (ref) => BookingNotifier(mastersRepository: getIt<MastersRepository>()),
+      );
 }

@@ -16,11 +16,14 @@ import '../presentation/home/app_loading_page.dart';
 import '../presentation/home/home_page.dart';
 import '../presentation/main/pages/main_page.dart';
 import '../presentation/main/pages/main_shell_page.dart';
+import '../presentation/masters/pages/booking_page.dart';
 import '../presentation/masters/pages/favourite_masters_page.dart';
 import '../presentation/masters/pages/master_page.dart';
 import '../presentation/masters/pages/masters_page.dart';
 import '../presentation/masters/pages/masters_shell_page.dart';
 import '../presentation/masters/pages/video_page.dart';
+import '../presentation/notes/pages/notes_page.dart';
+import '../presentation/notes/pages/notes_shell_page.dart';
 import '../presentation/profile/pages/auth/auth_page.dart';
 import '../presentation/profile/pages/auth/registration_page.dart';
 import '../presentation/profile/pages/profile/add_balanced_page.dart';
@@ -72,15 +75,19 @@ class AppRouter extends RootStackRouter {
           ],
         ),
         AutoRoute(
-          page: ChatShellRoute.page,
-          children: [
-            AutoRoute(initial: true, page: ChatRoute.page),
-            AutoRoute(page: DayCardRoute.page),
-            AutoRoute(page: FavouriteArticlesRoute.page),
-            AutoRoute(page: SimpleArticlesRoute.page),
-            AutoRoute(page: FavouriteMastersRoute.page),
-          ],
+          page: NotesShellRoute.page,
+          children: [AutoRoute(initial: true, page: NotesRoute.page)],
         ),
+        // AutoRoute(
+        //   page: ChatShellRoute.page,
+        //   children: [
+        //     AutoRoute(initial: true, page: ChatRoute.page),
+        //     AutoRoute(page: DayCardRoute.page),
+        //     AutoRoute(page: FavouriteArticlesRoute.page),
+        //     AutoRoute(page: SimpleArticlesRoute.page),
+        //     AutoRoute(page: FavouriteMastersRoute.page),
+        //   ],
+        // ),
         AutoRoute(
           page: ArticlesShellRoute.page,
           children: [
@@ -97,6 +104,7 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: AuthorizationRoute.page),
     AutoRoute(page: MasterRoute.page),
+    AutoRoute(page: BookingRoute.page),
     AutoRoute(page: ArticleRoute.page),
     AutoRoute(page: VideoRoute.page),
     AutoRoute(page: FavouriteArticlesRoute.page),

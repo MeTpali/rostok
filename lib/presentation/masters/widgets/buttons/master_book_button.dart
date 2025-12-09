@@ -17,7 +17,7 @@ class MasterBookButton extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14.0, 14.0, 14.0, 24.0),
       child: MainButton(
         child: const Text(
-          'Забронировать сессию',
+          'Записаться на занятие',
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,

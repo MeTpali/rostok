@@ -9,6 +9,8 @@ import '../../../../../core/constants/app_icons.dart';
 import '../../../../../routing/app_router.dart';
 import '../../../../core/parsers/icon_color_mapper.dart';
 import '../../providers/profile_di.dart';
+import '../dialogs/profile_avatar_action_sheet.dart'
+    show showProfileSettingsSheet;
 
 class ActivitiesCard extends ConsumerWidget {
   const ActivitiesCard({super.key});
@@ -55,26 +57,25 @@ class ActivitiesCard extends ConsumerWidget {
             ),
           ),
 
-          _buildSectionTitle('История'),
-          _buildTile(
-            context: context,
-            title: 'Операции',
-            onTap: () {},
-            leading: SvgPicture.asset(AppIcons.wallet, width: 18, height: 18),
-          ),
-          _buildDivider(),
-          _buildTile(
-            context: context,
-            title: 'Комментарии',
-            onTap: () {},
-            leading: SvgPicture.asset(AppIcons.chat2, width: 18, height: 18),
-          ),
-
+          // _buildSectionTitle('История'),
+          // _buildTile(
+          //   context: context,
+          //   title: 'Операции',
+          //   onTap: () {},
+          //   leading: SvgPicture.asset(AppIcons.wallet, width: 18, height: 18),
+          // ),
+          // _buildDivider(),
+          // _buildTile(
+          //   context: context,
+          //   title: 'Комментарии',
+          //   onTap: () {},
+          //   leading: SvgPicture.asset(AppIcons.chat2, width: 18, height: 18),
+          // ),
           _buildSectionTitle('Профиль'),
           _buildTile(
             context: context,
             title: 'Настройки',
-            onTap: () {},
+            onTap: () async => showProfileSettingsSheet(context: context),
             leading: SvgPicture.asset(AppIcons.setting, width: 18, height: 18),
           ),
           _buildDivider(),

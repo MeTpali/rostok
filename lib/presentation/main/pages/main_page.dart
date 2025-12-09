@@ -30,7 +30,7 @@ class MainPage extends ConsumerWidget {
         authorized: (profile) => ProfileAppBar(
           username: profile.firstName,
           mediaQuery: MediaQuery.of(context),
-          prana: 100,
+          prana: 1000,
           imageUrl: profile.avatarUrl,
           onTapProfile: () async => context.router.push(const ProfileRoute()),
           onTapDayCard: () async => showDayCard(context),

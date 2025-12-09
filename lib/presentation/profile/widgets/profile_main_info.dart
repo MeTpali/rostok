@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_icons.dart';
 import '../../../core/widgets/buttons/app_icon_button.dart';
 
 class ProfileMainInfo extends StatelessWidget {
@@ -33,8 +31,8 @@ class ProfileMainInfo extends StatelessWidget {
       _buildName(),
       const SizedBox(height: 8),
       _buildInfoLine(phone),
-      const SizedBox(height: 24),
-      _buildBadges(),
+      // const SizedBox(height: 24),
+      // _buildBadges(),
     ],
   );
 
@@ -112,47 +110,47 @@ class ProfileMainInfo extends StatelessWidget {
     ),
   );
 
-  Widget _buildBadges() {
-    final items = badges.take(3).toList();
-    return Wrap(
-      spacing: 8,
-      runSpacing: 12,
-      alignment: WrapAlignment.center,
-      children: items.map(_buildBadge).toList(),
-    );
-  }
+  // Widget _buildBadges() {
+  //   final items = badges.take(3).toList();
+  //   return Wrap(
+  //     spacing: 8,
+  //     runSpacing: 12,
+  //     alignment: WrapAlignment.center,
+  //     children: items.map(_buildBadge).toList(),
+  //   );
+  // }
 
-  Widget _buildBadge(String text) => Container(
-    height: 32,
-    decoration: BoxDecoration(
-      color: AppColors.whitePerl,
-      borderRadius: BorderRadius.circular(4),
-      border: Border.all(color: AppColors.lightPeriwinkle, width: 1),
-    ),
-    padding: const EdgeInsets.symmetric(horizontal: 8),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset(
-          AppIcons.family,
-          width: 13,
-          height: 13,
-          colorFilter: const ColorFilter.mode(
-            AppColors.fairway,
-            BlendMode.srcIn,
-          ),
-        ),
-        const SizedBox(width: 6),
-        Text(
-          text,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-            color: AppColors.fairway,
-          ),
-        ),
-      ],
-    ),
-  );
+  // Widget _buildBadge(String text) => Container(
+  //   height: 32,
+  //   decoration: BoxDecoration(
+  //     color: AppColors.whitePerl,
+  //     borderRadius: BorderRadius.circular(4),
+  //     border: Border.all(color: AppColors.lightPeriwinkle, width: 1),
+  //   ),
+  //   padding: const EdgeInsets.symmetric(horizontal: 8),
+  //   child: Row(
+  //     mainAxisSize: MainAxisSize.min,
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       SvgPicture.asset(
+  //         AppIcons.family,
+  //         width: 13,
+  //         height: 13,
+  //         colorFilter: const ColorFilter.mode(
+  //           AppColors.fairway,
+  //           BlendMode.srcIn,
+  //         ),
+  //       ),
+  //       const SizedBox(width: 6),
+  //       Text(
+  //         text,
+  //         style: const TextStyle(
+  //           fontSize: 12,
+  //           fontWeight: FontWeight.w500,
+  //           color: AppColors.fairway,
+  //         ),
+  //       ),
+  //     ],
+  //   ),
+  // );
 }

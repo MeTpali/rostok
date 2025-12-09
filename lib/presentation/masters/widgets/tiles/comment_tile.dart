@@ -37,7 +37,7 @@ class MasterCommentTile extends StatelessWidget {
       Text(
         DateFormat('dd MMMM yyyy', 'ru_Ru').format(dateTime),
         style: const TextStyle(
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppColors.flagstone,
         ),
@@ -51,14 +51,14 @@ class MasterCommentTile extends StatelessWidget {
             const Icon(
               Icons.star_outlined,
               color: AppColors.kazakhstanYellow,
-              size: 11.67,
+              size: 14,
             ),
 
           for (int i = star; i < 5; i++)
             const Icon(
               Icons.star_outlined,
               color: AppColors.flagstone,
-              size: 11.67,
+              size: 14,
             ),
         ],
       ),
@@ -66,7 +66,7 @@ class MasterCommentTile extends StatelessWidget {
       Text(
         topics.join(', ').capitalize(),
         style: const TextStyle(
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: FontWeight.w500,
           color: AppColors.flagstone,
         ),
@@ -75,10 +75,10 @@ class MasterCommentTile extends StatelessWidget {
       Text(
         descrption,
         style: const TextStyle(
-          fontSize: 12,
+          fontSize: 14,
           fontWeight: FontWeight.w500,
           color: AppColors.kettleman,
-          height: 17 / 12,
+          height: 17 / 14,
         ),
       ),
     ],
