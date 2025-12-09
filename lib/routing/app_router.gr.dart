@@ -163,12 +163,16 @@ class AuthorizationRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [BookingPage]
 class BookingRoute extends PageRouteInfo<BookingRouteArgs> {
-  BookingRoute({required int masterId, Key? key, List<PageRouteInfo>? children})
-    : super(
-        BookingRoute.name,
-        args: BookingRouteArgs(masterId: masterId, key: key),
-        initialChildren: children,
-      );
+  BookingRoute({
+    required int masterId,
+    required String name,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         BookingRoute.name,
+         args: BookingRouteArgs(masterId: masterId, name: name, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'BookingRoute';
 
@@ -176,21 +180,31 @@ class BookingRoute extends PageRouteInfo<BookingRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<BookingRouteArgs>();
-      return BookingPage(masterId: args.masterId, key: args.key);
+      return BookingPage(
+        masterId: args.masterId,
+        name: args.name,
+        key: args.key,
+      );
     },
   );
 }
 
 class BookingRouteArgs {
-  const BookingRouteArgs({required this.masterId, this.key});
+  const BookingRouteArgs({
+    required this.masterId,
+    required this.name,
+    this.key,
+  });
 
   final int masterId;
+
+  final String name;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'BookingRouteArgs{masterId: $masterId, key: $key}';
+    return 'BookingRouteArgs{masterId: $masterId, name: $name, key: $key}';
   }
 }
 

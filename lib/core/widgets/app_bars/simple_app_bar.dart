@@ -89,6 +89,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
           Expanded(
             child: Text(
               title,
+              maxLines: 2,
               style: const TextStyle(
                 overflow: TextOverflow.ellipsis,
                 color: AppColors.carbonFiber,

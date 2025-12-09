@@ -16,7 +16,8 @@ import '../providers/masters_di.dart';
 @RoutePage()
 class BookingPage extends ConsumerStatefulWidget {
   final int masterId;
-  const BookingPage({required this.masterId, super.key});
+  final String name;
+  const BookingPage({required this.masterId, required this.name, super.key});
 
   @override
   ConsumerState<BookingPage> createState() => _BookingPageState();
@@ -41,7 +42,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
 
     return Scaffold(
       appBar: SimpleAppBar(
-        title: 'Запись на online занятие',
+        title: 'Запись на online занятие к Александра Кузнецова',
         mediaQuery: MediaQuery.of(context),
       ),
       backgroundColor: AppColors.fairway,
@@ -270,20 +271,51 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                           ),
                         ),
                         onPressed: () {
-                          ref
-                              .read(MastersDi.bookingProvider.notifier)
-                              .submitBooking()
-                              .then((success) {
-                                if (success && mounted) {
-                                  // Invalidate notes provider to refresh the list
-                                  ref.invalidate(NotesDi.notesProvider);
-                                  // Show success dialog
+                          ref.read(MastersDi.bookingProvider.notifier).submitBooking().then((
+                            success,
+                          ) {
+                            if (success && mounted) {
+                              // Invalidate notes provider to refresh the list
+                              ref.invalidate(NotesDi.notesProvider);
+                              // Show success dialog with booking details
+                              final bookingState = ref.read(
+                                MastersDi.bookingProvider,
+                              );
+                              bookingState.maybeWhen(
+                                resolved: (master, selectedTopic, selectedDateTime, _) {
                                   showDialog<void>(
                                     context: context,
                                     builder: (context) => AlertDialog(
                                       title: const Text('Успешно!'),
-                                      content: const Text(
-                                        'Вы успешно записались на занятие',
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            'Вы успешно записались на занятие',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 16),
+                                          _buildDialogRow(
+                                            'Преподаватель:',
+                                            '${master.firstName} ${master.lastName}',
+                                          ),
+                                          const SizedBox(height: 8),
+                                          _buildDialogRow(
+                                            'Тема:',
+                                            selectedTopic ?? '',
+                                          ),
+                                          const SizedBox(height: 8),
+                                          if (selectedDateTime != null)
+                                            _buildDialogRow(
+                                              'Время:',
+                                              '${_formatDate(selectedDateTime)} в ${_formatTime(selectedDateTime)}',
+                                            ),
+                                        ],
                                       ),
                                       actions: [
                                         TextButton(
@@ -300,8 +332,11 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                                       ],
                                     ),
                                   );
-                                }
-                              });
+                                },
+                                orElse: () {},
+                              );
+                            }
+                          });
                         },
                         disabled:
                             selectedTopic == null || selectedDateTime == null,
@@ -336,5 +371,32 @@ class _BookingPageState extends ConsumerState<BookingPage> {
 
   String _formatTime(DateTime dateTime) {
     return DateFormat('HH:mm').format(dateTime);
+  }
+
+  Widget _buildDialogRow(String label, String value) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: AppColors.base60,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            value,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.carbonFiber,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

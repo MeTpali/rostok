@@ -63,7 +63,11 @@ class MastersBlock extends ConsumerWidget {
                     authorized: (_) => true,
                   )) {
                     await context.router.push(
-                      BookingRoute(masterId: mastersState.masters[i].id),
+                      BookingRoute(
+                        masterId: mastersState.masters[i].id,
+                        name:
+                            '${mastersState.masters[i].firstName} ${mastersState.masters[i].lastName}',
+                      ),
                     );
                   } else {
                     await showDialog<void>(

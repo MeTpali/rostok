@@ -145,12 +145,21 @@ class _MasterPageState extends ConsumerState<MasterPage> {
           ),
           MasterBookButton(
             onTap: () async {
+              final name = ref
+                  .watch(MastersDi.masterProvider)
+                  .maybeMap(
+                    orElse: () => '',
+                    resolved: (master) =>
+                        '${master.master.firstName} ${master.master.lastName}',
+                  );
               final profile = ref.read(ProfileDi.profileProvider);
               if (profile.maybeMap(
                 orElse: () => false,
                 authorized: (_) => true,
               )) {
-                await context.router.push(BookingRoute(masterId: widget.id));
+                await context.router.push(
+                  BookingRoute(masterId: widget.id, name: name),
+                );
               } else {
                 await showDialog<void>(
                   context: context,

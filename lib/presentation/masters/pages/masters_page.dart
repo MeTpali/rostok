@@ -216,7 +216,11 @@ class _MastersPageState extends ConsumerState<MastersPage> {
                               authorized: (_) => true,
                             )) {
                               await context.router.push(
-                                BookingRoute(masterId: master.id),
+                                BookingRoute(
+                                  masterId: master.id,
+                                  name:
+                                      '${master.firstName} ${master.lastName}',
+                                ),
                               );
                             } else {
                               await showDialog<void>(
