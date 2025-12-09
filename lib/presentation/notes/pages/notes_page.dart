@@ -7,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/widgets/app_bars/simple_app_bar.dart';
-import '../../../core/widgets/buttons/main_button.dart';
 import '../../../core/widgets/cards/app_card.dart';
 import '../../../domain/models/bookings/booking/booking.dart';
 import '../providers/notes_di.dart';
